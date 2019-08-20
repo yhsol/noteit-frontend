@@ -4,11 +4,13 @@ import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider } from "styled-components";
 import Theme from "./Styles/Theme";
 import App from "./Components/App";
+import { ApolloProvider } from "react-apollo-hooks";
+import { Client } from "./Apollo/Client";
 
 ReactDOM.render(
-  <ThemeProvider theme={Theme}>
+  <ApolloProvider client={Client}>
     <App />
-  </ThemeProvider>,
+  </ApolloProvider>,
   document.getElementById("root")
 );
 

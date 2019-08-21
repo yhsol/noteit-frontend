@@ -6,6 +6,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import RouterComponent from "./RouterComponent";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
+import Header from "./Header";
+import styled from "styled-components";
 
 interface IAppProps {}
 
@@ -22,6 +24,10 @@ const LogInQuery = gql`
   }
 `;
 
+const RouterComponentStyle = styled.div`
+  margin-top: 56px;
+`;
+
 const App: React.FunctionComponent<IAppProps> = () => {
   const { data } = useQuery(LogInQuery);
   const { isLoggedIn }: { isLoggedIn: boolean } = data;
@@ -32,7 +38,10 @@ const App: React.FunctionComponent<IAppProps> = () => {
       <>
         <GlobalStyles />
         <Router>
-          <RouterComponent isLoggedIn={isLoggedIn} />
+          <Header />
+          <RouterComponentStyle>
+            <RouterComponent isLoggedIn={isLoggedIn} />
+          </RouterComponentStyle>
         </Router>
       </>
     </ThemeProvider>

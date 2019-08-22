@@ -30,30 +30,78 @@ const HeaderItem = styled(Link)`
   margin: 0 5px;
 `;
 
+const SideMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.0975);
+  z-index: 1;
+  height: 50vh;
+  left: 0;
+  margin-top: 56px;
+  transition: width 1s linear;
+  padding: 0 20px;
+  a {
+    color: black;
+    margin: 5px 0;
+  }
+`;
+
 interface IHeaderProps {}
 
 // TODO: sign up page 에서는 header X
 
 const Header: React.FunctionComponent<IHeaderProps> = () => {
+  const [menuOpen, setMenuOpen] = React.useState<string>("close");
+
+  const toggleMenu = () => {
+    if (menuOpen === "close") {
+      setMenuOpen("open");
+    } else if (menuOpen === "open") {
+      setMenuOpen("close");
+    }
+  };
+  console.log(menuOpen);
   return (
-    <Wrapper>
-      <HeaderWrapper>
-        <Link to="/">noteit</Link>
-        <HeaderItems>
-          <HeaderItem to="/search">
-            <ExploreIcon />
-          </HeaderItem>
-          <HeaderItem to="/notification">
-            <CaptionIcon />
-          </HeaderItem>
-          <HeaderItem to="/profile">
-            <SettingIcon />
-          </HeaderItem>
-        </HeaderItems>
-        {/* side menu bar 에서 다양한 기능을 보여줘야됨. 
+    <>
+      <Wrapper>
+        <HeaderWrapper>
+          <Link to="/">noteit</Link>
+          <HeaderItems>
+            <HeaderItem to="/search">
+              <ExploreIcon />
+            </HeaderItem>
+            <HeaderItem to="/notification">
+              <CaptionIcon />
+            </HeaderItem>
+            <HeaderItem to="/profile" onClick={toggleMenu}>
+              <SettingIcon />
+            </HeaderItem>
+          </HeaderItems>
+          {/* side menu bar 에서 다양한 기능을 보여줘야됨. 
         다른 page 하나를 새로 만들어서 토글 될 때 해당 라우터들을 연결한 page 가 나오게 하는 방식으로 해볼 수 있을 듯. */}
-      </HeaderWrapper>
-    </Wrapper>
+        </HeaderWrapper>
+      </Wrapper>
+
+      {menuOpen === "open" && (
+        <SideMenu>
+          <Link to="profile" onClick={toggleMenu}>
+            profile!
+          </Link>
+          <Link to="profile" onClick={toggleMenu}>
+            profile!
+          </Link>
+          <Link to="profile" onClick={toggleMenu}>
+            profile!
+          </Link>
+          <Link to="profile" onClick={toggleMenu}>
+            profile!
+          </Link>
+          <Link to="profile" onClick={toggleMenu}>
+            profile!
+          </Link>
+        </SideMenu>
+      )}
+    </>
   );
 };
 

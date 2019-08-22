@@ -8,8 +8,14 @@ import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
 import Header from "./Header";
 import styled from "styled-components";
+import Footer from "./Footer";
 
 interface IAppProps {}
+
+const Wrapper = styled.div`
+  min-height: calc(100vh - 56px - 3rem);
+  margin-top: 56px;
+`;
 
 // interface LogInProps {
 //   isLoggedIn: boolean;
@@ -24,10 +30,6 @@ const LogInQuery = gql`
   }
 `;
 
-const RouterComponentStyle = styled.div`
-  margin-top: 56px;
-`;
-
 const App: React.FunctionComponent<IAppProps> = () => {
   const { data } = useQuery(LogInQuery);
   const { isLoggedIn }: { isLoggedIn: boolean } = data;
@@ -38,10 +40,13 @@ const App: React.FunctionComponent<IAppProps> = () => {
       <>
         <GlobalStyles />
         <Router>
-          <Header />
-          <RouterComponentStyle>
-            <RouterComponent isLoggedIn={isLoggedIn} />
-          </RouterComponentStyle>
+          <>
+            <Wrapper>
+              <Header />
+              <RouterComponent isLoggedIn={isLoggedIn} />
+            </Wrapper>
+            <Footer />
+          </>
         </Router>
       </>
     </ThemeProvider>

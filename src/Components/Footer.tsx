@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { GithubIcon } from "./Icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,7 +26,9 @@ const Footer: React.FunctionComponent<IFooterProps> = props => {
   return (
     <Wrapper>
       <FooterItems>
-        <div>git</div>
+        <a href="https://github.com/yhsol" target="blank">
+          <GithubIcon />
+        </a>
         <div>@copyright NOTEIT</div>
       </FooterItems>
     </Wrapper>

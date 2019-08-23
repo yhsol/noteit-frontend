@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ExploreIcon, CaptionIcon, SettingIcon } from "./Icons";
+import { SearchIcon, NotificationIcon, UserIcon } from "./Icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,11 +35,11 @@ const SideMenu = styled.div`
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.0975);
   z-index: 1;
-  height: 50vh;
+  height: 120%;
   left: 0;
-  margin-top: 56px;
+  margin: 56px 0 14px;
   transition: width 1s linear;
-  padding: 0 20px;
+  padding: 12px 20px;
   a {
     color: black;
     margin: 5px 0;
@@ -65,16 +65,18 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
     <>
       <Wrapper>
         <HeaderWrapper>
-          <Link to="/">noteit</Link>
+          <Link to="/" style={{ fontSize: "26px" }}>
+            noteit
+          </Link>
           <HeaderItems>
             <HeaderItem to="/search">
-              <ExploreIcon />
+              <SearchIcon />
             </HeaderItem>
             <HeaderItem to="/notification">
-              <CaptionIcon />
+              <NotificationIcon />
             </HeaderItem>
             <HeaderItem to="/profile" onClick={toggleMenu}>
-              <SettingIcon />
+              <UserIcon />
             </HeaderItem>
           </HeaderItems>
           {/* side menu bar 에서 다양한 기능을 보여줘야됨. 

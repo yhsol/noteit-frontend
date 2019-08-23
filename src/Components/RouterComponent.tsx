@@ -5,8 +5,8 @@ import Explore from "../Routes/Explore";
 import Notification from "../Routes/Notification";
 import Search from "../Routes/Search";
 import EditProfile from "../Routes/EditProfile";
-import Profile from "../Routes/Profile";
 import Auth from "../Routes/Auth";
+import Profile from "../Routes/Profile";
 import UploadPost from "../Routes/UploadPost";
 import EditPost from "../Routes/EditPost";
 // TODO: 블로그이기 때문에 login 이 되지 않았을 때도 feed 를 보여줘야 됨.

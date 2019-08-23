@@ -25,7 +25,7 @@ const Box = styled.button`
   height: 30px;
 `;
 
-const Auth = () => {
+const AuthContainer = () => {
   const [action, setAction] = useState<String>("logIn");
 
   return (
@@ -37,4 +37,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthContainer;

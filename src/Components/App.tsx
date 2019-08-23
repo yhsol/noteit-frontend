@@ -15,6 +15,7 @@ interface IAppProps {}
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px - 3rem);
   margin-top: 56px;
+  padding: 14px 23px;
 `;
 
 // interface LogInProps {
@@ -41,8 +42,8 @@ const App: React.FunctionComponent<IAppProps> = () => {
         <GlobalStyles />
         <Router>
           <>
+            <Header />
             <Wrapper>
-              <Header />
               <RouterComponent isLoggedIn={isLoggedIn} />
             </Wrapper>
             <Footer />

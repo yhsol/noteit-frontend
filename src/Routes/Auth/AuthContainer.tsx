@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import useInput from "../../Utils/Hooks/useInput";
+import AuthPresenter from "./AuthPresenter";
+import { useMutation } from "react-apollo-hooks";
+import { LOG_IN } from "./AuthQuery";
 
 // TODO: Auth 페이지에서는 header 를 안보이게 해야됨.
 
 interface ActionProps {
   action: string;
 }
+
+interface IAuthProps {}
 
 const Wrapper = styled.div`
   min-height: 80vh;
@@ -25,15 +31,24 @@ const Box = styled.button`
   height: 30px;
 `;
 
-const AuthContainer = () => {
-  const [action, setAction] = useState<String>("logIn");
+const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
+  const [action, setAction] = useState<string>("logIn");
+  const username = useInput("");
+  const email = useInput("");
+  const firstName = useInput("");
+  const lastName = useInput("");
+  const requestSecretMutation = useMutation(LOG_IN, {
+    variables: { email: email.value }
+  });
 
   return (
-    <Wrapper>
-      <>
-        <div>{action === "logIn" ? <Box>Log In</Box> : <Box>Sign Up</Box>}</div>
-      </>
-    </Wrapper>
+    <AuthPresenter
+      action={action}
+      username={username}
+      email={email}
+      firstName={firstName}
+      lastName={lastName}
+    />
   );
 };
 

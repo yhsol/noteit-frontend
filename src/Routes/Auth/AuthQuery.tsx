@@ -1,9 +1,7 @@
-import * as React from "react";
+import { gql } from "apollo-boost";
 
-interface IAuthQueryProps {}
-
-const AuthQuery: React.FunctionComponent<IAuthQueryProps> = props => {
-  return <div>auth query</div>;
-};
-
-export default AuthQuery;
+export const LOG_IN = gql`
+  mutation requestSecret($email: String!) {
+    requestSecret(email: $email)
+  }
+`;

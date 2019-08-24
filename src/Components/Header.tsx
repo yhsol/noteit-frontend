@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { SearchIcon, NotificationIcon, UserIcon } from "./Icons";
+import { SearchIcon, NotificationIcon, UserIcon } from "../Utils/Icons";
 
 const Wrapper = styled.div`
   display: flex;

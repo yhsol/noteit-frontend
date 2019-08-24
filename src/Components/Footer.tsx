@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { GithubIcon } from "./Icons";
+import { GithubIcon } from "../Utils/Icons";
 
 const Wrapper = styled.div`
   display: flex;

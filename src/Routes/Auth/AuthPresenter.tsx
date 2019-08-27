@@ -1,6 +1,7 @@
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
 import Input from "../../Utils/Input";
+import Button from "../../Utils/Button";
 
 const Wrapper = styled.div`
   height: 80vh;
@@ -19,6 +20,7 @@ const Form = styled.div`
   width: 90vw;
   padding: 20px 10px;
   background-color: rgba(0, 0, 0, 0.001);
+  text-align: center;
 `;
 
 const Title = styled.h1`
@@ -38,10 +40,17 @@ const Box = styled.div`
 
 interface IAuthPresenterProps {
   action: string;
-  username: object;
-  email: object;
-  firstName: object;
-  lastName: object;
+  username: InputProps;
+  email: InputProps;
+  firstName: InputProps;
+  lastName: InputProps;
+  onSubmit(e: React.FormEvent<HTMLElement>): void;
+}
+
+interface InputProps {
+  value: string;
+  onChange(e?: React.ChangeEvent<HTMLInputElement>): void;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
@@ -49,16 +58,19 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
   username,
   email,
   firstName,
-  lastName
+  lastName,
+  onSubmit
 }) => {
+  console.log(email.value);
   return (
     <Wrapper>
       <Form>
         <Title>LogIn to noteit</Title>
         {action === "logIn" && (
           <>
-            <form>
+            <form onSubmit={onSubmit}>
               <Input placeholder={"email"} type="email" {...email} />
+              <Button text={"Log In"} />
             </form>
           </>
         )}

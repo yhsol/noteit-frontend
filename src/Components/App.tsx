@@ -9,6 +9,8 @@ import { useQuery } from "react-apollo-hooks";
 import Header from "./Header";
 import styled from "styled-components";
 import Footer from "./Footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface IAppProps {}
 
@@ -47,6 +49,7 @@ const App: React.FunctionComponent<IAppProps> = () => {
               <RouterComponent isLoggedIn={isLoggedIn} />
             </Wrapper>
             <Footer />
+            <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
           </>
         </Router>
       </>

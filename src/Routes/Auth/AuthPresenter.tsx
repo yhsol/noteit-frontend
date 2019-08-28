@@ -61,7 +61,6 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
   lastName,
   onSubmit
 }) => {
-  console.log(email.value);
   return (
     <Wrapper>
       <Form>
@@ -71,6 +70,17 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
             <form onSubmit={onSubmit}>
               <Input placeholder={"email"} type="email" {...email} />
               <Button text={"Log In"} />
+            </form>
+          </>
+        )}
+        {action === "signUp" && (
+          <>
+            <form onSubmit={onSubmit}>
+              <Input placeholder={"email"} type="email" {...email} />
+              <Input placeholder={"username"} {...username} />
+              <Input placeholder={"firstName"} {...firstName} />
+              <Input placeholder={"lastName"} {...lastName} />
+              <Button text={"Sign Up"} />
             </form>
           </>
         )}

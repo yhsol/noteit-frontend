@@ -16,18 +16,11 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
   const firstName = useInput("");
   const lastName = useInput("");
 
-  const requestSecret = useMutation(LOG_IN, {
-    update: (_, { data }) => {
-      const { requestSecret } = data;
-      if (!requestSecret) {
-        toast.error("You don't have an account yet, create one!");
-        setTimeout(() => setAction("signUP"), 2000);
-      }
-    },
+  const requestSecretMutation = useMutation(LOG_IN, {
     variables: { email: email.value }
   });
 
-  const createAccount = useMutation(CREATE_ACCOUNT, {
+  const createAccountMutation = useMutation(CREATE_ACCOUNT, {
     variables: {
       username: username.value,
       email: email.value,
@@ -36,11 +29,27 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
     }
   });
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (action === "login") {
+    if (action === "logIn") {
       if (email.value !== "") {
-        requestSecret();
+        try {
+          const {
+            data: { requestSecret }
+          } = await requestSecretMutation();
+          console.log(requestSecret);
+          if (!requestSecret) {
+            toast.error("You don't have an account yet, create one!");
+            setTimeout(() => {
+              setAction("signUp");
+            }, 2000);
+          } else {
+            toast.success("Check your login secret!");
+            setAction("confirm");
+          }
+        } catch {
+          toast.error("Can't request secret, try again!");
+        }
       } else {
         toast.error("Email is required!");
       }
@@ -51,7 +60,20 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
         firstName.value !== "" &&
         lastName.value !== ""
       ) {
-        createAccount();
+        try {
+          const {
+            data: { createAccount }
+          } = await createAccountMutation();
+          console.log(createAccount);
+          if (!createAccount) {
+            toast.error("Can't create an account, try again!");
+          } else {
+            toast.success("Accoun created! Log In NoW");
+            setTimeout(() => setAction("logIn"), 2000);
+          }
+        } catch (error) {
+          toast.error(error.message);
+        }
       } else {
         toast.error("All filed are required");
       }

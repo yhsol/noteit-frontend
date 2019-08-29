@@ -57,9 +57,7 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
           console.log(requestSecret);
           if (!requestSecret) {
             toast.error("You don't have an account yet, create one!");
-            setTimeout(() => {
-              setAction("signUp");
-            }, 2000);
+            setTimeout(() => setAction("signUp"), 2000);
           } else {
             toast.success("Check your email for login secret!");
             setAction("confirm");

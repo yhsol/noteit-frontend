@@ -44,6 +44,7 @@ interface IAuthPresenterProps {
   email: InputProps;
   firstName: InputProps;
   lastName: InputProps;
+  secret: InputProps;
   onSubmit(e: React.FormEvent<HTMLElement>): void;
 }
 
@@ -59,7 +60,8 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
   email,
   firstName,
   lastName,
-  onSubmit
+  onSubmit,
+  secret
 }) => {
   return (
     <Wrapper>
@@ -81,6 +83,14 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
               <Input placeholder={"firstName"} {...firstName} />
               <Input placeholder={"lastName"} {...lastName} />
               <Button text={"Sign Up"} />
+            </form>
+          </>
+        )}
+        {action === "confirm" && (
+          <>
+            <form onSubmit={onSubmit}>
+              <Input placeholder={"login secret"} required {...secret} />
+              <Button text={"Confirm"} />
             </form>
           </>
         )}

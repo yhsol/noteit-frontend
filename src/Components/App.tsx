@@ -11,6 +11,8 @@ import styled from "styled-components";
 import Footer from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FooterSmall from "./uiMobile/FooterSmall";
+import HeaderSmall from "./uiMobile/HeaderSmall";
 
 interface IAppProps {}
 
@@ -37,6 +39,15 @@ const App: React.FunctionComponent<IAppProps> = () => {
   const { data } = useQuery(LogInQuery);
   const { isLoggedIn }: { isLoggedIn: boolean } = data;
   console.log(isLoggedIn);
+  const smallMedia = window.matchMedia("(min-width: 500px)").matches;
+  // const [media, setMedia] = React.useState(smallMedia);
+  // console.log(smallMedia);
+  // React.useEffect(() => {
+  //   smallMedia();
+  // }, []);
+  // TODO: smallMedia 로 화면 크기에 따라 컴포넌트를 다르게 렌더할 수 있지만 렌더할 때의 환경에 맞게 렌더하는 것이지 렌더 된 뒤에
+  // 화면 크기에 따라 유기적으로 변하는 건 아님.
+  // styled-component, mediaQuery, className, props 를 이용해서 컴포넌트를 제어할 방법을 찾아야 할 듯.
 
   return (
     <ThemeProvider theme={Theme}>
@@ -44,11 +55,11 @@ const App: React.FunctionComponent<IAppProps> = () => {
         <GlobalStyles />
         <Router>
           <>
-            <Header />
+            {smallMedia ? <Header /> : <HeaderSmall />}
             <Wrapper>
               <RouterComponent isLoggedIn={isLoggedIn} />
             </Wrapper>
-            <Footer />
+            {smallMedia ? <Footer /> : <FooterSmall />}
             <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
           </>
         </Router>

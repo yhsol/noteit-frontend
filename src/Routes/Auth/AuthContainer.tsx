@@ -44,7 +44,7 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
               setAction("signUp");
             }, 2000);
           } else {
-            toast.success("Check your login secret!");
+            toast.success("Check your email for login secret!");
             setAction("confirm");
           }
         } catch {

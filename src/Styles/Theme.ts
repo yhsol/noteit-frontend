@@ -12,6 +12,11 @@ export default {
   blueColor: "#3897f0",
   navyColor: "#003569",
   borderRadius: "3px",
+  uiColorOrange: "#f7a400",
+  uiColorBlue: "#3a9efd",
+  uiColorPupple: "#3e4491",
+  uiColorDeepPupple: "#292a73",
+  uiColorNavy: "#1a1b4b",
   boxBorder: "solid 1px #dbdbdb",
   whiteBox: `border: ${BOX_BORDER};
              border-radius: ${BORDER_RADIUS}; 

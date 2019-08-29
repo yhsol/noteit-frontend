@@ -1,12 +1,16 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { SearchIcon, NotificationIcon, UserIcon } from "../Utils/Icons";
+import {
+  SearchIcon,
+  NotificationIcon,
+  UserIcon,
+  ExploreIcon
+} from "../../Utils/Icons";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
   height: 56px;
   z-index: 1;
@@ -22,7 +26,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 71%;
+  width: 100%;
 `;
 
 const HeaderItems = styled.li``;
@@ -51,7 +55,7 @@ interface IHeaderProps {}
 
 // TODO: sign up page 에서는 header X
 
-const Header: React.FunctionComponent<IHeaderProps> = () => {
+const HeaderSmall: React.FunctionComponent<IHeaderProps> = () => {
   const [menuOpen, setMenuOpen] = React.useState<string>("close");
 
   const toggleMenu = () => {
@@ -61,7 +65,7 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
       setMenuOpen("close");
     }
   };
-  console.log(menuOpen);
+  // console.log(menuOpen);
   return (
     <>
       <Wrapper>
@@ -70,14 +74,14 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
             noteit
           </Link>
           <HeaderItems>
-            <HeaderItem to="/search">
+            {/* <HeaderItem to="/search">
               <SearchIcon />
             </HeaderItem>
             <HeaderItem to="/notification">
               <NotificationIcon />
-            </HeaderItem>
+            </HeaderItem> */}
             <HeaderItem to="/profile" onClick={toggleMenu}>
-              <UserIcon />
+              <ExploreIcon />
             </HeaderItem>
           </HeaderItems>
           {/* side menu bar 에서 다양한 기능을 보여줘야됨. 
@@ -108,4 +112,4 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
   );
 };
 
-export default Header;
+export default HeaderSmall;

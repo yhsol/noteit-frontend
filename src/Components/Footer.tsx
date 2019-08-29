@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   bottom: 0;
   width: 100%;
   height: 3rem;
-  background-color: rgba(0, 0, 0, 0.0975);
+  background-color: rgba(0, 0, 0, 0.08);
 `;
 
 const FooterItems = styled.div`

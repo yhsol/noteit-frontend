@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import useInput from "../../Utils/Hooks/useInput";
 import AuthPresenter from "./AuthPresenter";
 import { useMutation } from "react-apollo-hooks";
-import { LOG_IN, CREATE_ACCOUNT } from "./AuthQuery";
+import {
+  LOG_IN,
+  CREATE_ACCOUNT,
+  CONFIRM_SECRET,
+  LOCAL_LOG_IN
+} from "./AuthQuery";
 import { toast } from "react-toastify";
 
 // TODO: Auth 페이지에서는 header 를 안보이게 해야됨.
@@ -15,7 +20,9 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
   const email = useInput("");
   const firstName = useInput("");
   const lastName = useInput("");
+  const secret = useInput("");
 
+  console.log(secret.value);
   const requestSecretMutation = useMutation(LOG_IN, {
     variables: { email: email.value }
   });
@@ -28,6 +35,16 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
       lastName: lastName.value
     }
   });
+
+  const confirmSecretMutation = useMutation(CONFIRM_SECRET, {
+    variables: {
+      secret: secret.value,
+      email: email.value
+    }
+  });
+
+  const localLogInMutation = useMutation(LOCAL_LOG_IN);
+  // token 은 confirmSecretMutation 이 실행 된 후에 생기므로 아래 코드 내에 쓴다.
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,6 +94,21 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
       } else {
         toast.error("All filed are required");
       }
+    } else if (action === "confirm") {
+      if (secret.value !== "") {
+        try {
+          const {
+            data: { confirmSecret: token }
+          } = await confirmSecretMutation();
+          if (token !== "" && token !== undefined) {
+            localLogInMutation({ variables: { token } });
+          } else {
+            throw Error();
+          }
+        } catch (error) {
+          toast.error("Can't confirm secret!");
+        }
+      }
     }
   };
 
@@ -88,6 +120,7 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
       firstName={firstName}
       lastName={lastName}
       onSubmit={onSubmit}
+      secret={secret}
     />
   );
 };

@@ -49,7 +49,7 @@ const SideMenu = styled.div`
 
 interface IHeaderProps {}
 
-// TODO: sign up page 에서는 header X
+// TODO: sign up page 에서는 header X -> useReducer, Context 쓰면 될 듯.
 
 const Header: React.FunctionComponent<IHeaderProps> = () => {
   const [menuOpen, setMenuOpen] = React.useState<string>("close");

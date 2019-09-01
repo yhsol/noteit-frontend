@@ -38,7 +38,7 @@ const LogInQuery = gql`
 const App: React.FunctionComponent<IAppProps> = () => {
   const { data } = useQuery(LogInQuery);
   const { isLoggedIn }: { isLoggedIn: boolean } = data;
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
   // const [media, setMedia] = React.useState(smallMedia);
   // console.log(smallMedia);

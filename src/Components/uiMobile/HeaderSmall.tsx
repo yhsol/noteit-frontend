@@ -1,7 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { ExploreIcon } from "../../Utils/Icons";
+import { ExploreIcon, UserIcon } from "../../Utils/Icons";
+import { useQuery } from "react-apollo-hooks";
+import { ME } from "../../SharedQuery";
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,6 +62,7 @@ const HeaderSmall: React.FunctionComponent<IHeaderProps> = props => {
       setMenuOpen("close");
     }
   };
+  const { data } = useQuery(ME);
   return (
     <>
       <Wrapper>
@@ -85,9 +88,15 @@ const HeaderSmall: React.FunctionComponent<IHeaderProps> = props => {
 
       {menuOpen === "open" && (
         <SideMenu>
-          <Link to="profile" onClick={toggleMenu}>
-            profile!
-          </Link>
+          {!data.me ? (
+            <Link to="/profile">
+              <UserIcon />
+            </Link>
+          ) : (
+            <Link to={data.me.username}>
+              <UserIcon />
+            </Link>
+          )}
           <Link to="profile" onClick={toggleMenu}>
             profile!
           </Link>

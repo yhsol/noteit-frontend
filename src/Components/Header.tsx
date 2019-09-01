@@ -92,7 +92,7 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
             <HeaderItem to="/notification">
               <NotificationIcon />
             </HeaderItem>
-            {data.me ? (
+            {!data.me ? (
               <HeaderItem to="#">
                 <UserIcon />
               </HeaderItem>
@@ -109,16 +109,18 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
 
       {menuOpen === "open" && (
         <SideMenu>
-          <Link to="profile" onClick={toggleMenu}>
+          {!data.me ? (
+            <Link to="/profile">profile!</Link>
+          ) : (
+            <Link to={data.me.username}>profile!</Link>
+          )}
+          <Link to="/profile" onClick={toggleMenu}>
             profile!
           </Link>
-          <Link to="profile" onClick={toggleMenu}>
+          <Link to="/profile" onClick={toggleMenu}>
             profile!
           </Link>
-          <Link to="profile" onClick={toggleMenu}>
-            profile!
-          </Link>
-          <Link to="profile" onClick={toggleMenu}>
+          <Link to="/profile" onClick={toggleMenu}>
             profile!
           </Link>
           <Link to="profile" onClick={toggleMenu}>

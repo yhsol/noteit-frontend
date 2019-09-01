@@ -1,0 +1,10 @@
+- withRouter 를 사용하는데 고생했다.
+ 해당 기능의 type 을 지정하는 방법이 다 너무 달라서 계속 에러가 났기 때문이다.
+ 깔끔히 해결할 수 있는 방법을 찾다가 https://www.reactandtypescript.dev/examples/react-router/ 를 발견함.
+ 컴포넌트의 타입을 
+ ```
+ type IHeaderProps = RouteComponentProps;
+
+ const Header: React.FunctionComponent<IHeaderProps> = (props) => {};
+```
+과 같이 지정하면 withRouter 의 타입을 읽는다.

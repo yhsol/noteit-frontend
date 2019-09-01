@@ -10,7 +10,6 @@ import {
 import { Link } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../../SharedQuery";
-import { QueryBaseOptions } from "apollo-boost";
 
 const Wrapper = styled.div`
   display: flex;

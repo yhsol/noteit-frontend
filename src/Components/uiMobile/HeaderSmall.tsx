@@ -1,12 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import {
-  SearchIcon,
-  NotificationIcon,
-  UserIcon,
-  ExploreIcon
-} from "../../Utils/Icons";
+import { Link, withRouter, RouteComponentProps } from "react-router-dom";
+import { ExploreIcon } from "../../Utils/Icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -51,11 +46,11 @@ const SideMenu = styled.div`
   }
 `;
 
-interface IHeaderProps {}
+type IHeaderProps = RouteComponentProps;
 
 // TODO: sign up page 에서는 header X
 
-const HeaderSmall: React.FunctionComponent<IHeaderProps> = () => {
+const HeaderSmall: React.FunctionComponent<IHeaderProps> = props => {
   const [menuOpen, setMenuOpen] = React.useState<string>("close");
 
   const toggleMenu = () => {
@@ -65,7 +60,6 @@ const HeaderSmall: React.FunctionComponent<IHeaderProps> = () => {
       setMenuOpen("close");
     }
   };
-  // console.log(menuOpen);
   return (
     <>
       <Wrapper>
@@ -112,4 +106,4 @@ const HeaderSmall: React.FunctionComponent<IHeaderProps> = () => {
   );
 };
 
-export default HeaderSmall;
+export default withRouter(HeaderSmall);

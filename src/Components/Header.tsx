@@ -1,7 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { SearchIcon, NotificationIcon, UserIcon } from "../Utils/Icons";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
+import { NotificationIcon, UserIcon } from "../Utils/Icons";
+import useInput from "../Utils/Hooks/useInput";
+import Input from "../Utils/Input";
+import { useQuery } from "react-apollo-hooks";
+import { ME } from "../SharedQuery";
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,11 +51,11 @@ const SideMenu = styled.div`
   }
 `;
 
-interface IHeaderProps {}
+type IHeaderProps = RouteComponentProps;
 
 // TODO: sign up page 에서는 header X -> useReducer, Context 쓰면 될 듯.
 
-const Header: React.FunctionComponent<IHeaderProps> = () => {
+const Header: React.FunctionComponent<IHeaderProps> = props => {
   const [menuOpen, setMenuOpen] = React.useState<string>("close");
 
   const toggleMenu = () => {
@@ -61,7 +65,15 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
       setMenuOpen("close");
     }
   };
-  console.log(menuOpen);
+
+  const search = useInput("");
+  const onSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    props.history.push(`/search?term=${search.value}`);
+  };
+
+  const { data } = useQuery(ME);
+
   return (
     <>
       <Wrapper>
@@ -69,16 +81,26 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
           <Link to="/" style={{ fontSize: "26px", color: "#f7a400" }}>
             noteit
           </Link>
+          <form onSubmit={onSearchSubmit}>
+            <Input
+              value={search.value}
+              onChange={search.onChange}
+              placeholder="search.."
+            />
+          </form>
           <HeaderItems>
-            <HeaderItem to="/search">
-              <SearchIcon />
-            </HeaderItem>
             <HeaderItem to="/notification">
               <NotificationIcon />
             </HeaderItem>
-            <HeaderItem to="/profile" onClick={toggleMenu}>
-              <UserIcon />
-            </HeaderItem>
+            {data.me ? (
+              <HeaderItem to="#">
+                <UserIcon />
+              </HeaderItem>
+            ) : (
+              <HeaderItem to="/profile" onClick={toggleMenu}>
+                <UserIcon />
+              </HeaderItem>
+            )}
           </HeaderItems>
           {/* side menu bar 에서 다양한 기능을 보여줘야됨. 
         다른 page 하나를 새로 만들어서 토글 될 때 해당 라우터들을 연결한 page 가 나오게 하는 방식으로 해볼 수 있을 듯. */}
@@ -108,4 +130,4 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

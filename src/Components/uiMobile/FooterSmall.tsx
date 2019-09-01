@@ -8,6 +8,9 @@ import {
   CommentIcon
 } from "../../Utils/Icons";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-apollo-hooks";
+import { ME } from "../../SharedQuery";
+import { QueryBaseOptions } from "apollo-boost";
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,7 +43,8 @@ const HeaderItem = styled(Link)`
 
 interface IFooterProps {}
 
-const FooterSmall: React.FunctionComponent<IFooterProps> = props => {
+const FooterSmall: React.FunctionComponent<IFooterProps> = () => {
+  const { data } = useQuery(ME);
   return (
     <Wrapper>
       <FooterItems>
@@ -60,9 +64,15 @@ const FooterSmall: React.FunctionComponent<IFooterProps> = props => {
         <HeaderItem to="/notification">
           <NotificationIcon />
         </HeaderItem>
-        <HeaderItem to="/profile">
-          <UserIcon />
-        </HeaderItem>
+        {!data.me ? (
+          <HeaderItem to="/#">
+            <UserIcon />
+          </HeaderItem>
+        ) : (
+          <HeaderItem to={data.me.username}>
+            <UserIcon />
+          </HeaderItem>
+        )}
         {/* side menu bar 에서 다양한 기능을 보여줘야됨. 
         다른 page 하나를 새로 만들어서 토글 될 때 해당 라우터들을 연결한 page 가 나오게 하는 방식으로 해볼 수 있을 듯. */}
         {/* </HeaderWrapper> */}

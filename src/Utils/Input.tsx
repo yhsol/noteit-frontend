@@ -16,7 +16,7 @@ const Wrapper = styled.input`
 interface IInputProps {
   value?: string;
   placeholder?: string;
-  onChange?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   type?: string;
   className?: string;

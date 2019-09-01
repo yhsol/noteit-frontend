@@ -28,15 +28,15 @@ const Title = styled.h1`
   margin-bottom: 2rem;
 `;
 
-const Box = styled.div`
-  ${props => props.theme.whiteBox}
-  background-color: rgba(0,0,0,0.00009);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 17rem;
-  padding: 0.5rem;
-`;
+// const Box = styled.div`
+//   ${props => props.theme.whiteBox}
+//   background-color: rgba(0,0,0,0.00009);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 17rem;
+//   padding: 0.5rem;
+// `;
 
 interface IAuthPresenterProps {
   action: string;

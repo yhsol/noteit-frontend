@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.button`
   color: white;
-  background-color: ${props => props.theme.blueColor};
+  background-color: ${props => props.theme.uiColorOrange};
   border: 0;
   border-radius: ${props => props.theme.borderRadius};
   width: 17rem;

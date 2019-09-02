@@ -15,5 +15,10 @@ declare module "styled-components" {
     borderRadius: string;
     boxBorder: string;
     whiteBox: string;
+    uiColorOrange: string;
+    uiColorBlue: string;
+    uiColorPupple: string;
+    uiColorDeepPupple: string;
+    uiColorNavy: string;
   }
 }

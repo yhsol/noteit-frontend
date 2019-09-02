@@ -38,7 +38,12 @@ export const FEED_QUERY = gql`
 const Feed = () => {
   const { data, loading } = useQuery(FEED_QUERY);
   console.log(data, loading);
-  return <div>{loading ? <Loader /> : <div>Feed!</div>}</div>;
+  return (
+    <>
+      {loading && <Loader />}
+      {!loading && data && <div>data is here!{data.seeFeed.title}</div>}
+    </>
+  );
 };
 
 export default Feed;

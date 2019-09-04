@@ -7,3 +7,40 @@ export const ME = gql`
     }
   }
 `;
+
+export const FEED_QUERY = gql`
+  {
+    seeFeed {
+      id
+      user {
+        id
+        avatar
+        username
+      }
+      title
+      text
+      files {
+        id
+        url
+      }
+      tags {
+        id
+        text
+      }
+      location
+      comments {
+        id
+        text
+        user {
+          id
+          username
+        }
+      }
+      isLiked
+      commentCount
+      likeCount
+      createdAt
+      updatedAt
+    }
+  }
+`;

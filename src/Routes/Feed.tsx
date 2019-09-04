@@ -1,47 +1,32 @@
 import React from "react";
-import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
 import Loader from "../Components/Loader";
-
-export const FEED_QUERY = gql`
-  {
-    seeFeed {
-      id
-      user {
-        username
-      }
-      title
-      text
-      files {
-        id
-        url
-      }
-      tags
-      location
-      comments {
-        id
-        text
-        user {
-          id
-          username
-        }
-      }
-      isLiked
-      commentCount
-      likeCount
-      createdAt
-      updatedAt
-    }
-  }
-`;
+import PostList from "./PostList";
+import { FEED_QUERY } from "../SharedQuery";
 
 const Feed = () => {
   const { data, loading } = useQuery(FEED_QUERY);
-  console.log(data, loading);
   return (
     <>
       {loading && <Loader />}
-      {!loading && data && <div>data is here!{data.seeFeed.title}</div>}
+      {/* {!loading && data && <div>data is here!{data.seeFeed[0].title}</div>} */}
+      {!loading &&
+        data &&
+        data.seeFeed &&
+        data.seeFeed.map((postList: any) => (
+          <PostList
+            key={postList.id}
+            id={postList.id}
+            user={postList.user}
+            title={postList.title}
+            text={postList.text}
+            tags={postList.tags}
+            files={postList.files}
+            isliked={postList.isliked}
+            commentCount={postList.commentCount}
+            createAt={postList.createAt}
+          />
+        ))}
     </>
   );
 };

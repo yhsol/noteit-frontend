@@ -1,7 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
+import { SearchIcon } from "./Icons";
+import Button from "./Button";
 
-const Wrapper = styled.input`
+const Form = styled.form`
   background-color: ${props => props.theme.backgroundColor};
   border: ${props => props.theme.boxBorder};
   border-radius: ${props => props.theme.borderRadius};
@@ -11,6 +13,21 @@ const Wrapper = styled.input`
   width: 17rem;
   margin: 0 auto;
   height: 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const SInput = styled.input`
+  border: none;
+  background-color: inherit;
+  width: 100%;
+`;
+
+const SButton = styled.button`
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
 `;
 
 interface IInputProps {
@@ -31,14 +48,19 @@ const Input: React.FunctionComponent<IInputProps> = ({
   className
 }) => {
   return (
-    <Wrapper
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      required={required}
-      type={type}
-      className={className}
-    />
+    <Form>
+      <SInput
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        required={required}
+        type={type}
+        className={className}
+      />
+      <SButton>
+        <SearchIcon size={17} />
+      </SButton>
+    </Form>
   );
 };
 

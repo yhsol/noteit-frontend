@@ -24,7 +24,7 @@ const Feed = () => {
             files={postList.files}
             isliked={postList.isliked}
             commentCount={postList.commentCount}
-            createAt={postList.createAt}
+            createdAt={postList.createdAt}
           />
         ))}
     </>

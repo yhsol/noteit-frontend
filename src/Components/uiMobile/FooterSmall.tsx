@@ -29,13 +29,6 @@ const FooterItems = styled.div`
   width: 100%;
 `;
 
-const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
 const HeaderItem = styled(Link)`
   margin: 0 5px;
 `;

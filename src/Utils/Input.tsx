@@ -1,9 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import { SearchIcon } from "./Icons";
-import Button from "./Button";
 
-const Form = styled.form`
+const Form = styled.div`
   background-color: ${props => props.theme.backgroundColor};
   border: ${props => props.theme.boxBorder};
   border-radius: ${props => props.theme.borderRadius};

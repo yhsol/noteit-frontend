@@ -25,7 +25,7 @@ interface IPostListContaienr {
   files: Array<IFilesProps>;
   isliked: boolean;
   commentCount: number;
-  createAt: number;
+  createdAt: number;
 }
 
 const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
@@ -37,7 +37,7 @@ const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
   files,
   isliked,
   commentCount,
-  createAt
+  createdAt
 }) => {
   return <div>{title}</div>;
 };

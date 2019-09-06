@@ -1,4 +1,6 @@
-import * as React from "react";
+import React, { useState } from "react";
+import PostListPresenter from "./PostListPresenter";
+import useInput from "../../Utils/Hooks/useInput";
 
 interface IUserProps {
   id: string;
@@ -23,7 +25,8 @@ interface IPostListContaienr {
   text: string;
   tags: Array<ITagsProps>;
   files: Array<IFilesProps>;
-  isliked: boolean;
+  isLiked: boolean;
+  likeCount: number;
   commentCount: number;
   createdAt: number;
 }
@@ -35,11 +38,33 @@ const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
   text,
   tags,
   files,
-  isliked,
+  isLiked,
+  likeCount,
   commentCount,
   createdAt
 }) => {
-  return <div>{title}</div>;
+  const [isLikedState, setIsLiked] = useState<boolean>(isLiked);
+  const [likeCountState, setLikeCount] = useState<number>(likeCount);
+  const [commentCountState, setCommentCount] = useState<number>(commentCount);
+  const comment = useInput("");
+  return (
+    <PostListPresenter
+      id={id}
+      user={user}
+      title={title}
+      text={text}
+      tags={tags}
+      files={files}
+      isLiked={isLikedState}
+      likeCount={likeCountState}
+      commentCount={commentCountState}
+      createdAt={createdAt}
+      newComment={comment}
+      setIsLiked={setIsLiked}
+      setLikeCount={setLikeCount}
+      setCommentCount={setCommentCount}
+    />
+  );
 };
 
 export default PostListContainer;

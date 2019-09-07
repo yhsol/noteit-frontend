@@ -2,21 +2,59 @@ import * as React from "react";
 import styled from "styled-components";
 import { FullHeartIcon, EmptyHeartIcon, CommentIcon } from "../../Utils/Icons";
 
+const Section = styled.div`
+  display: grid;
+  /* TODO: grid row 로 높이를 정해야 할 듯. */
+`;
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 8fr 2fr;
-  width: 80vw;
-  margin: 2rem auto;
+  margin-bottom: 2rem;
 `;
 
-const TextSection = styled.div``;
+const TextSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Title = styled.h2`
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+  margin-right: 2rem;
+  font-weight: 600;
+`;
+
+const SubTitle = styled.div`
+  color: rgba(0, 0, 0, 0.55);
+  margin-bottom: 1.2rem;
+  font-size: 17px;
+`;
+
+const Author = styled.div`
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.86);
+  margin-bottom: 0.3rem;
+`;
 
 const FileSection = styled.div`
   background-color: ${props => props.theme.greyColor};
 `;
 
+const InfoSection = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const InfoData = styled.span`
+  display: flex;
   margin-right: 1rem;
+  font-size: 14px;
+`;
+
+const InfoDataItem = styled.span`
+  margin-left: 5px;
 `;
 
 interface IUserProps {
@@ -70,20 +108,23 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
   return (
     <Wrapper>
       <TextSection>
-        <div>{title}</div>
-        <div>{text}</div>
-        <div>{id}</div>
-        <div>
+        <Title>{title}</Title>
+        <SubTitle>{text}</SubTitle>
+        <Author>{id}</Author>
+        <InfoSection>
           <InfoData>
-            {isLiked ? <FullHeartIcon /> : <EmptyHeartIcon />}
-            {likeCount}
+            {isLiked ? (
+              <FullHeartIcon size={14} />
+            ) : (
+              <EmptyHeartIcon size={14} />
+            )}
+            <InfoDataItem>{likeCount}</InfoDataItem>
           </InfoData>
           <InfoData>
-            <CommentIcon />
-            {commentCount}
+            <CommentIcon size={14} />
+            <InfoDataItem>{commentCount}</InfoDataItem>
           </InfoData>
-          <InfoData>{tags.length !== 0 ? "tag" : "notag"}</InfoData>
-        </div>
+        </InfoSection>
       </TextSection>
       <FileSection>{files.length !== 0 ? "file" : "nofile"}</FileSection>
     </Wrapper>

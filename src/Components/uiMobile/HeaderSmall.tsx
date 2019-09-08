@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { ExploreIcon, UserIcon } from "../../Utils/Icons";
+import { ExploreIcon, UserIcon, MenuIcon } from "../../Utils/Icons";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../../SharedQuery";
 
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
 `;
 
@@ -78,7 +78,7 @@ const HeaderSmall: React.FunctionComponent<IHeaderProps> = props => {
               <NotificationIcon />
             </HeaderItem> */}
             <HeaderItem to="/profile" onClick={toggleMenu}>
-              <ExploreIcon />
+              <MenuIcon />
             </HeaderItem>
           </HeaderItems>
           {/* side menu bar 에서 다양한 기능을 보여줘야됨. 

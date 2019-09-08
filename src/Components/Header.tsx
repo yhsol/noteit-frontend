@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import { NotificationIcon, UserIcon } from "../Utils/Icons";
+import { NotificationIcon, UserIcon, ExploreIcon } from "../Utils/Icons";
 import useInput from "../Utils/Hooks/useInput";
 import Input from "../Utils/Input";
 import { useQuery } from "react-apollo-hooks";
@@ -89,6 +89,9 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
             />
           </form>
           <HeaderItems>
+            <HeaderItem to="/explore">
+              <ExploreIcon />
+            </HeaderItem>
             <HeaderItem to="/notification">
               <NotificationIcon />
             </HeaderItem>

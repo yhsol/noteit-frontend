@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 import {
-  GithubIcon,
   SearchIcon,
   NotificationIcon,
   UserIcon,
-  CommentIcon
+  PenIcon,
+  HomeIcon
 } from "../../Utils/Icons";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
@@ -46,13 +46,13 @@ const FooterSmall: React.FunctionComponent<IFooterProps> = () => {
           noteit
         </Link> */}
         <HeaderItem to="/">
-          <GithubIcon />
+          <HomeIcon />
         </HeaderItem>
         <HeaderItem to="/search">
           <SearchIcon />
         </HeaderItem>
         <HeaderItem to="/uploadpost">
-          <CommentIcon />
+          <PenIcon />
         </HeaderItem>
         <HeaderItem to="/notification">
           <NotificationIcon />

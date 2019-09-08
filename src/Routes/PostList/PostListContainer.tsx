@@ -20,10 +20,10 @@ interface IFilesProps {
 
 interface IPostListContaienr {
   id: string;
-  user: Array<IUserProps>;
+  user: IUserProps;
   title: string;
   text: string;
-  tags: Array<ITagsProps>;
+  tags: ITagsProps;
   files: Array<IFilesProps>;
   isLiked: boolean;
   likeCount: number;

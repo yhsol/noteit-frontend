@@ -11,7 +11,7 @@ export default createGlobalStyle`
         color: ${props => props.theme.blackColor};
     }
     a {
-        color: ${props => props.theme.blueColor};
+        color: ${props => props.theme.blackColor};
         text-decoration: none;
     }
     ul, li {

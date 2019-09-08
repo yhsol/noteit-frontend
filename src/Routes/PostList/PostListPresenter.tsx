@@ -1,16 +1,20 @@
+/* TODO: grid row 로 높이를 정해야 할 듯. */
+// TODO: lazyloading 적용해야 할 듯.
 import * as React from "react";
 import styled from "styled-components";
 import { FullHeartIcon, EmptyHeartIcon, CommentIcon } from "../../Utils/Icons";
+import { Link } from "react-router-dom";
 
 const Section = styled.div`
   display: grid;
-  /* TODO: grid row 로 높이를 정해야 할 듯. */
+  margin-bottom: 2rem;
 `;
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 8fr 2fr;
-  margin-bottom: 2rem;
+  grid-auto-rows: 100px;
+  grid-template-rows: 100px;
 `;
 
 const TextSection = styled.div`
@@ -24,6 +28,9 @@ const Title = styled.h2`
   margin-bottom: 0.5rem;
   margin-right: 2rem;
   font-weight: 600;
+  :hover {
+    color: ${props => props.theme.uiColorOrange};
+  }
 `;
 
 const SubTitle = styled.div`
@@ -39,7 +46,20 @@ const Author = styled.div`
 `;
 
 const FileSection = styled.div`
-  background-color: ${props => props.theme.greyColor};
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const File = styled.img`
+  max-width: 100%;
+  top: 0;
+  height: 100%;
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.5s linear;
 `;
 
 const InfoSection = styled.div`
@@ -55,6 +75,7 @@ const InfoData = styled.span`
 
 const InfoDataItem = styled.span`
   margin-left: 5px;
+  color: rgba(0, 0, 0, 0.5);
 `;
 
 interface IUserProps {
@@ -75,10 +96,10 @@ interface IFilesProps {
 
 interface IPostListPresenter {
   id: string;
-  user: Array<IUserProps>;
+  user: IUserProps;
   title: string;
   text: string;
-  tags: Array<ITagsProps>;
+  tags: ITagsProps;
   files: Array<IFilesProps>;
   isLiked: boolean;
   likeCount: number;
@@ -105,29 +126,44 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
   setLikeCount,
   setCommentCount
 }) => {
+  const { username } = user;
+  console.log(files[0]);
   return (
-    <Wrapper>
-      <TextSection>
-        <Title>{title}</Title>
-        <SubTitle>{text}</SubTitle>
-        <Author>{id}</Author>
-        <InfoSection>
-          <InfoData>
-            {isLiked ? (
-              <FullHeartIcon size={14} />
-            ) : (
-              <EmptyHeartIcon size={14} />
-            )}
-            <InfoDataItem>{likeCount}</InfoDataItem>
-          </InfoData>
-          <InfoData>
-            <CommentIcon size={14} />
-            <InfoDataItem>{commentCount}</InfoDataItem>
-          </InfoData>
-        </InfoSection>
-      </TextSection>
-      <FileSection>{files.length !== 0 ? "file" : "nofile"}</FileSection>
-    </Wrapper>
+    <Section>
+      <Wrapper>
+        <TextSection>
+          <Link to={id && `post/${id}`}>
+            <Title>{title}</Title>
+            <SubTitle>{text}</SubTitle>
+          </Link>
+          <Link to={username && `profile/${username}`}>
+            <Author>{username}</Author>
+          </Link>
+          <InfoSection>
+            <InfoData>
+              {isLiked ? (
+                <FullHeartIcon size={14} />
+              ) : (
+                <EmptyHeartIcon size={14} />
+              )}
+              <InfoDataItem>{likeCount}</InfoDataItem>
+            </InfoData>
+            <InfoData>
+              <CommentIcon size={14} />
+              <InfoDataItem>{commentCount}</InfoDataItem>
+            </InfoData>
+          </InfoSection>
+        </TextSection>
+        <Link to={id && `post/${id}`}>
+          <FileSection>
+            {files &&
+              files.map((file, index) => (
+                <File key={file.id} src={file.url} hidden={index !== 0} />
+              ))}
+          </FileSection>
+        </Link>
+      </Wrapper>
+    </Section>
   );
 };
 

@@ -1,0 +1,25 @@
+import * as React from "react";
+import { useQuery } from "react-apollo-hooks";
+import { withRouter, RouteComponentProps } from "react-router";
+import { POST_QUERY } from "./Post/PostQuery";
+import Loader from "../Components/Loader";
+import Post from "./Post";
+
+const PostRoot = () => {
+  const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
+  console.log(data, loading);
+
+  return (
+    <>
+      {loading && <Loader />}
+      {!loading &&
+        data &&
+        data.seeFullPost &&
+        data.seeFullPost.map((post: any) => {
+          <Post key={post.id} id={post.id} />;
+        })}
+    </>
+  );
+};
+
+export default withRouter(PostRoot);

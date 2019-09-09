@@ -6,13 +6,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import RouterComponent from "./RouterComponent";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
-import Header from "./Header";
+import Header from "./LayOut/Header";
 import styled from "styled-components";
-import Footer from "./Footer";
+import Footer from "./LayOut/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FooterSmall from "./uiMobile/FooterSmall";
-import HeaderSmall from "./uiMobile/HeaderSmall";
+import FooterSmall from "./LayOut/FooterSmall";
+import HeaderSmall from "./LayOut/HeaderSmall";
 
 interface IAppProps {}
 

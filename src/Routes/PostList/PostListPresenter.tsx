@@ -127,7 +127,7 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
   setCommentCount
 }) => {
   const { username } = user;
-  console.log(files[0]);
+  // console.log(files[0]);
   return (
     <Section>
       <Wrapper>

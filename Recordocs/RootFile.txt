@@ -1,0 +1,2 @@
+- Feed 와 PostList 의 관계.
+ -> 그렇다면 Post 에도 PostRoot 가 필요한가.

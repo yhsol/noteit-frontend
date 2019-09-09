@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { GithubIcon } from "../Utils/Icons";
+import { GithubIcon } from "../../Utils/Icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   bottom: 0;
   width: 100%;
   height: 3rem;
-  background-color: ${props => props.theme.backgroundColor}
+  background-color: ${props => props.theme.backgroundColor};
   position: fixed;
 `;
 

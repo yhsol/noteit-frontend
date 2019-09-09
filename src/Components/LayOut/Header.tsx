@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import { NotificationIcon, UserIcon, ExploreIcon } from "../Utils/Icons";
-import useInput from "../Utils/Hooks/useInput";
-import Input from "../Utils/Input";
+import { NotificationIcon, UserIcon, ExploreIcon } from "../../Utils/Icons";
+import useInput from "../../Utils/Hooks/useInput";
+import Input from "../../Utils/Input";
 import { useQuery } from "react-apollo-hooks";
-import { ME } from "../SharedQuery";
+import { ME } from "../../SharedQuery";
 
 const Wrapper = styled.div`
   display: flex;

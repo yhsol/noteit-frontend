@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import TextareaAutosize from "react-autosize-textarea";
 
 const Form = styled.div`
   background-color: ${props => props.theme.backgroundColor};
@@ -11,7 +12,7 @@ const Form = styled.div`
   justify-content: space-between;
 `;
 
-const SInput = styled.input`
+const SInput = styled(TextareaAutosize)`
   border: none;
   background-color: inherit;
   width: 100%;
@@ -26,7 +27,7 @@ const SButton = styled.button`
 interface IInputProps {
   value?: string;
   placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   required?: boolean;
   type?: string;
   className?: string;

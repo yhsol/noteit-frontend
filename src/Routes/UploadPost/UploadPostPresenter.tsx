@@ -1,5 +1,19 @@
 import * as React from "react";
 import UploadInput from "../../Utils/UploadInput";
+import styled from "styled-components";
+
+const TitleForm = styled.form`
+  margin: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+`;
+
+const TitleInput = styled(UploadInput)`
+  font-size: 23px;
+`;
+
+const TextInput = styled(UploadInput)`
+  font-size: 20px;
+`;
 
 interface InputProps {
   value: string;
@@ -18,12 +32,10 @@ const UPloadPostPresenter: React.FunctionComponent<
 > = ({ title, text, onSubmit }) => {
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <UploadInput placeholder={"title"} {...title} />
-        <UploadInput placeholder={"content"} {...text} />
-        <div>submit</div>
-      </form>
-      <div>tags</div>
+      <TitleForm onSubmit={onSubmit}>
+        <TitleInput placeholder={"title"} {...title} />
+      </TitleForm>
+      <TextInput placeholder={"content"} {...text} />
     </>
   );
 };

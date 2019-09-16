@@ -22,7 +22,6 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
   const lastName = useInput("");
   const secret = useInput("");
 
-  console.log(secret.value);
   const requestSecretMutation = useMutation(LOG_IN, {
     variables: { email: email.value }
   });

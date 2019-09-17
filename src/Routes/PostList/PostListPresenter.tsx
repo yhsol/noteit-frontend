@@ -127,6 +127,7 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
   setCommentCount
 }) => {
   const { username } = user;
+  const date = createdAt.toString();
   // console.log(files[0]);
   return (
     <Section>
@@ -134,7 +135,13 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
         <TextSection>
           <Link to={id && `post/${id}`}>
             <Title>{title}</Title>
-            <SubTitle>{text}</SubTitle>
+            <SubTitle>
+              {text.length > 73 ? (
+                <span>{text.substring(0, 73)}...</span>
+              ) : (
+                text
+              )}
+            </SubTitle>
           </Link>
           <Link to={username && `profile/${username}`}>
             <Author>{username}</Author>
@@ -151,6 +158,9 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
             <InfoData>
               <CommentIcon size={14} />
               <InfoDataItem>{commentCount}</InfoDataItem>
+            </InfoData>
+            <InfoData>
+              <InfoDataItem>{date.substring(0, 10)}</InfoDataItem>
             </InfoData>
           </InfoSection>
         </TextSection>

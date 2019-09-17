@@ -16,8 +16,16 @@ import HeaderSmall from "./LayOut/HeaderSmall";
 
 interface IAppProps {}
 
+const SmallWrapper = styled.div`
+  min-height: calc(100vh - 56px - 3rem);
+  margin-top: 56px;
+  padding: 14px 23px;
+`;
+
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px - 3rem);
+  width: 71%;
+  margin: 0 auto;
   margin-top: 56px;
   padding: 14px 23px;
 `;
@@ -56,9 +64,16 @@ const App: React.FunctionComponent<IAppProps> = () => {
         <Router>
           <>
             {smallMedia ? <Header /> : <HeaderSmall />}
-            <Wrapper>
-              <RouterComponent isLoggedIn={isLoggedIn} />
-            </Wrapper>
+            {smallMedia ? (
+              <Wrapper>
+                <RouterComponent isLoggedIn={isLoggedIn} />
+              </Wrapper>
+            ) : (
+              <SmallWrapper>
+                <RouterComponent isLoggedIn={isLoggedIn} />
+              </SmallWrapper>
+            )}
+
             {smallMedia ? <Footer /> : <FooterSmall />}
             <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
           </>

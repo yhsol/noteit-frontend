@@ -23,7 +23,7 @@ const UploadPostContainer: React.FunctionComponent<
     }
   });
 
-  const onSubmit = async (e: React.FormEvent<HTMLFontElement>) => {
+  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (title.value !== "" && text.value !== "") {
       try {

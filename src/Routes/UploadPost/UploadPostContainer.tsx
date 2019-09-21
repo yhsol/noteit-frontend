@@ -5,6 +5,7 @@ import { UPLOAD_POST } from "./UploadPostQuery";
 import { toast } from "react-toastify";
 import useUploadInput from "../../Utils/Hooks/useUploadInput";
 import { withRouter, RouteComponentProps } from "react-router";
+import Editor from "../../Utils/Editor";
 
 type IUploadPostContainerProps = RouteComponentProps;
 
@@ -39,7 +40,7 @@ const UploadPostContainer: React.FunctionComponent<
     }
   };
 
-  return <UPloadPostPresenter title={title} text={text} onSubmit={onSubmit} />;
+  return <Editor title={title} text={text} onSubmit={onSubmit} />;
 };
 
 export default withRouter(UploadPostContainer);

@@ -78,6 +78,8 @@ const InfoDataItem = styled.span`
   color: rgba(0, 0, 0, 0.5);
 `;
 
+const Small = styled.div``;
+
 interface IUserProps {
   id: string;
   username: string;

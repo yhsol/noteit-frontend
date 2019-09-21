@@ -1,0 +1,19 @@
+- today
+
+- post 에서 file, tag 읽는 코드 작성. ok
+
+- markdown view 선택버튼. ok
+
+- tags, files -> 
+    tag 랑 file 을 각각 인식해서 그걸 배열로 반환해서 저장할 수 있게 하자. 일단 지금은 file 도 그냥 url 을 직접 써서 저장하는 방법으로 하자.
+
+- editor 컴포넌트 작성.
+
+- eidtor 에서 save 누르면 팝업 띄워서 tag 인식.
+    -> 아니면 따로 버튼을 만들어서 해당 값을 제출하는 input 작성.
+
+- 기능적인 구현 완료.
+
+- pwa 이전 단계 까지 완료.
+
+- files, tags 를 지정할 방법 탐색.    -> files 는 로컬에서 이미지를 찾는 것까지 구현해서 당장은 못할 듯.

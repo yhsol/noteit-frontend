@@ -1,1 +1,23 @@
 - feed 에서 읽은 사람 수 표현해야 됨.
+
+- 포스트 뷰에서 files, tags 에 map 기능 추가해서 보여주기.
+
+- uploadPost 에서 files, tags 기능 추가. post 에서 map 을 해서 보여주는 기능을 응용 할 수 있을 듯.
+  따로 input 을 만들어서 각각을 submit 할 수 있게하거나, # 등을 넣고, 그 값을 읽어서 문자열을 자른 후, 그것을 배열에 넣는 방법을 쓸 수 있을 것 같다.
+
+- notification 에서 like, comment, following 등의 변화를 감지해서 보여 줄 수 있게 만들기. 
+
+- 전체적인 코드 simplyfy 및 refactor
+
+- pwa
+
+- markdown 기능.
+
+- files, 즉 사진을 읽어오는 방법.
+
+- onSave 는 upload, edit 쿼리를 둘 다 구현해 뒀기 때문에 따로 만들지 않아도 될 듯.
+  그냥 comment 를 저장하듯이 저장해도 될 듯.
+    -> 그렇기는 하지만 텍스트가 많아질 때 해당 값을 포매팅해서 저장을 해야하지 않을까 싶긴 함.
+
+- editor 를 따로 만들 것인가. upload / edit 둘 다 같은 포맷을 쓰니까.
+    -> 이렇게 써보니까 만들어야 겠다. 같은 포맷을 유지하는 것도 중요.

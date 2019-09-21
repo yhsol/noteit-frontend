@@ -60,17 +60,19 @@ interface InputProps {
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface IUPloadPostPresenterProps {
+interface IEditPostPresenterProps {
   title: InputProps;
   text: InputProps;
   onSubmit(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-const UploadPostPresenter: React.FunctionComponent<
-  IUPloadPostPresenterProps
-> = ({ title, text, onSubmit }) => {
+const EditPostPresenter: React.FunctionComponent<IEditPostPresenterProps> = ({
+  title,
+  text,
+  onSubmit
+}) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
-
+  console.log(title);
   return (
     <>
       <Wrapper>
@@ -103,4 +105,4 @@ const UploadPostPresenter: React.FunctionComponent<
   );
 };
 
-export default UploadPostPresenter;
+export default EditPostPresenter;

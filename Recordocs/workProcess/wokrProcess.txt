@@ -1,0 +1,12 @@
+- today
+
+- files, tags 를 지정할 방법 탐색.    -> files 는 로컬에서 이미지를 찾는 것까지 구현해서 당장은 못할 듯.
+
+- post 에서 file, tag 읽는 코드 작성.
+
+- editor 컴포넌트 만들기.
+
+- markdown 구현
+
+- media query 디테일 구현.
+

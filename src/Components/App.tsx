@@ -13,6 +13,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FooterSmall from "./LayOut/FooterSmall";
 import HeaderSmall from "./LayOut/HeaderSmall";
+import media from "styled-media-query";
+import { Big, Small } from "../Utils/MediaQuery";
 
 interface IAppProps {}
 
@@ -63,18 +65,24 @@ const App: React.FunctionComponent<IAppProps> = () => {
         <GlobalStyles />
         <Router>
           <>
-            {smallMedia ? <Header /> : <HeaderSmall />}
             {smallMedia ? (
-              <Wrapper>
-                <RouterComponent isLoggedIn={isLoggedIn} />
-              </Wrapper>
+              <>
+                <Header />
+                <Wrapper>
+                  <RouterComponent isLoggedIn={isLoggedIn} />
+                </Wrapper>
+                <Footer />
+              </>
             ) : (
-              <SmallWrapper>
-                <RouterComponent isLoggedIn={isLoggedIn} />
-              </SmallWrapper>
+              <>
+                <HeaderSmall />
+                <SmallWrapper>
+                  <RouterComponent isLoggedIn={isLoggedIn} />
+                </SmallWrapper>
+                <FooterSmall />
+              </>
             )}
 
-            {smallMedia ? <Footer /> : <FooterSmall />}
             <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
           </>
         </Router>

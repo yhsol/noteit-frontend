@@ -1,5 +1,5 @@
 import * as React from "react";
-import UploadInput from "../../Utils/UploadInput";
+import UploadInput from "../Utils/UploadInput";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import media from "styled-media-query";
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 const TitleWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4rem;
+  grid-template-columns: 1fr 7.1rem;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -45,7 +45,7 @@ const TextInput = styled(UploadInput)`
 `;
 
 const Button = styled.button`
-  width: 4rem;
+  width: 100%;
   height: 2rem;
   color: white;
   font-size: 17px;
@@ -60,16 +60,22 @@ interface InputProps {
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface IUPloadPostPresenterProps {
+interface IEditorProps {
   title: InputProps;
   text: InputProps;
   onSubmit(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-const UploadPostPresenter: React.FunctionComponent<
-  IUPloadPostPresenterProps
-> = ({ title, text, onSubmit }) => {
+const Editor: React.FunctionComponent<IEditorProps> = ({
+  title,
+  text,
+  onSubmit
+}) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
+  const [toggle, setToggle] = React.useState(false);
+  const onClickToggle = () => {
+    setToggle(!toggle);
+  };
 
   return (
     <>
@@ -79,22 +85,29 @@ const UploadPostPresenter: React.FunctionComponent<
             <TitleInput placeholder={"title"} {...title} />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
-          <Button onClick={onSubmit}>save</Button>
+          <div>
+            <Button onClick={onSubmit}>save</Button>
+            <Button onClick={onClickToggle}>markdown</Button>
+          </div>
         </TitleWrapper>
         <TextWrapper>
           {!smallMedia ? (
             <>
-              <div>
-                <ReactMarkdown source={text.value} />
-              </div>
+              {toggle === true && (
+                <div>
+                  <ReactMarkdown source={text.value} />
+                </div>
+              )}
               <TextInput placeholder={"content"} {...text} />
             </>
           ) : (
             <>
               <TextInput placeholder={"content"} {...text} />
-              <div>
-                <ReactMarkdown source={text.value} />
-              </div>
+              {toggle === true && (
+                <div>
+                  <ReactMarkdown source={text.value} />
+                </div>
+              )}
             </>
           )}
         </TextWrapper>
@@ -103,4 +116,4 @@ const UploadPostPresenter: React.FunctionComponent<
   );
 };
 
-export default UploadPostPresenter;
+export default Editor;

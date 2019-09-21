@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 export default createGlobalStyle`
-    ${reset}
     * {
         box-sizing: border-box;
     }
@@ -13,9 +12,6 @@ export default createGlobalStyle`
     a {
         color: ${props => props.theme.blackColor};
         text-decoration: none;
-    }
-    ul, li {
-        list-style: none;
     }
     input {
         outline: none;

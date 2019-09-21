@@ -26,7 +26,9 @@ const HeaderWrapper = styled.div`
   width: 100%;
 `;
 
-const HeaderItems = styled.li``;
+const HeaderItems = styled.li`
+  list-style: none;
+`;
 
 const HeaderItem = styled(Link)`
   margin: 0 5px;

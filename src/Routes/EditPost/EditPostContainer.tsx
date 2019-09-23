@@ -14,8 +14,6 @@ type IEditPostContainerProps = RouteComponentProps<{ id: string }, any, any>;
 const EditPostContainer: React.FunctionComponent<
   IEditPostContainerProps
 > = props => {
-  const text = useUploadInput("");
-
   const {
     match: {
       params: { id }
@@ -24,23 +22,42 @@ const EditPostContainer: React.FunctionComponent<
 
   const EDIT = "EDIT";
   const DELETE = "DELETE";
-
   const [action, setAction] = React.useState(EDIT);
-
-  const editPostMutation = useMutation(EDIT_POST, {
-    variables: {
-      id,
-      action
-    }
-  });
+  const [titletitle, settitletitle] = React.useState("");
+  const [texttext, settexttext] = React.useState("");
 
   const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
   const post = data.seeFullPost;
+  console.log(post);
+  // React.useEffect(() => {
+  //   return () => {
+  //     if (!loading && data && post) {
+  //       settitletitle(post.title);
+  //       settexttext(post.text);
+  //     }
+  //   };
+  // }, []);
+
+  const title = useUploadInput(titletitle);
+  const text = useUploadInput("");
+  const editPostMutation = useMutation(EDIT_POST, {
+    variables: {
+      id,
+      action: EDIT,
+      title: title.value,
+      text: text.value
+    }
+  });
+
+  // loading 이 끝난 뒤에야 데이터를 가져올 수 있기때문에 여기서 바로 데이터 요청하면 오류.
   const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (id !== "" && action !== "" && post.value !== "" && text.value !== "") {
+    if (id !== "" && action !== "") {
       try {
-        const { data } = await editPostMutation();
+        const {
+          data: { editPost }
+        } = await editPostMutation();
+        console.log(editPost);
         toast.success("upload complete!");
         props.history.push(`/feed`);
       } catch (error) {
@@ -48,16 +65,15 @@ const EditPostContainer: React.FunctionComponent<
       }
     }
   };
+
   return (
     <>
       {loading && <Loader />}
-      {!loading && data && post && (
-        <EditPostPresenter
-          title={post.title}
-          text={post.text}
-          onSubmit={onSubmit}
-        />
-      )}
+      {!loading && data && post ? (
+        <>
+          <Editor title={title} text={text} onSubmit={onSubmit} />
+        </>
+      ) : null}
     </>
   );
 };

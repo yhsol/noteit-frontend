@@ -1,0 +1,18 @@
+- today
+
+- editPost
+    -> container 에서 post.title, post.text 를 loading 이 끝난 뒤에 presenter 로 전달해서
+        거기서 useUploadInput 을 다시 작성하고 거기에 default value 로 값을 넣어서 썼더니
+        결국 onSubmit 으로 전달될 때 container 의 useUploadInput 의 value 는 empty 라서 빈 내용이 저장 됨. 
+
+- markdown editor 의 특성을 높일 수 있게 집중. 가볍고, 우아하게 동작하게 하자. 기본 앱이 동작하듯이 아주 가볍게.
+    -> 많은 리팩토링 필요.
+        - 필요한 query 만 가져오기.
+        - styled-components 의 rebass 사용해서 코드 줄이기.
+        - 줄일 거 쵀대한 줄이고, 추가할 수 있는 애니메이션 추가해보기.
+
+- 기능적인 구현 완료.
+
+- pwa 이전 단계 까지 완료.
+
+- files, tags 를 지정할 방법 탐색.    -> files 는 로컬에서 이미지를 찾는 것까지 구현해서 당장은 못할 듯.

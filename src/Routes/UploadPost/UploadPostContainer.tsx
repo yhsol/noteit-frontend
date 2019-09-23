@@ -31,7 +31,6 @@ const UploadPostContainer: React.FunctionComponent<
         const {
           data: { uploadPost }
         } = await uploadPostMutation();
-        console.log(uploadPost);
         toast.success("upload complete!");
         props.history.push(`/feed`);
       } catch (error) {

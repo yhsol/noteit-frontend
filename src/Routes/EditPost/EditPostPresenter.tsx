@@ -3,6 +3,7 @@ import UploadInput from "../../Utils/UploadInput";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import media from "styled-media-query";
+import useUploadInput from "../../Utils/Hooks/useUploadInput";
 
 const Wrapper = styled.div`
   display: flex;
@@ -64,21 +65,27 @@ interface IEditPostPresenterProps {
   title: InputProps;
   text: InputProps;
   onSubmit(e: React.MouseEvent<HTMLButtonElement>): void;
+  contentTitle: string;
+  contentText: string;
 }
 
 const EditPostPresenter: React.FunctionComponent<IEditPostPresenterProps> = ({
   title,
   text,
-  onSubmit
+  onSubmit,
+  contentTitle,
+  contentText
 }) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
-  console.log(title);
+  const editTitle = useUploadInput("" || contentTitle);
+  const editText = useUploadInput("" || contentText);
+
   return (
     <>
       <Wrapper>
         <TitleWrapper>
           <TitleForm>
-            <TitleInput placeholder={"title"} {...title} />
+            <TitleInput placeholder={"title"} {...editTitle} />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
           <Button onClick={onSubmit}>save</Button>
@@ -87,15 +94,15 @@ const EditPostPresenter: React.FunctionComponent<IEditPostPresenterProps> = ({
           {!smallMedia ? (
             <>
               <div>
-                <ReactMarkdown source={text.value} />
+                <ReactMarkdown source={editText.value} />
               </div>
-              <TextInput placeholder={"content"} {...text} />
+              <TextInput placeholder={"content"} {...editText} />
             </>
           ) : (
             <>
-              <TextInput placeholder={"content"} {...text} />
+              <TextInput placeholder={"content"} {...editText} />
               <div>
-                <ReactMarkdown source={text.value} />
+                <ReactMarkdown source={editText.value} />
               </div>
             </>
           )}

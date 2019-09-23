@@ -1,10 +1,11 @@
 - today
 
-- post 에서 file, tag 읽는 코드 작성. ok
+- editPost
+    -> container 에서 post.title, post.text 를 loading 이 끝난 뒤에 presenter 로 전달해서
+        거기서 useUploadInput 을 다시 작성하고 거기에 default value 로 값을 넣어서 썼더니
+        결국 onSubmit 으로 전달될 때 container 의 useUploadInput 의 value 는 empty 라서 빈 내용이 저장 됨. 
 
-- markdown view 선택버튼. ok
-
-- editor 컴포넌트 작성. ok
+- markdown editor 의 특성을 높일 수 있게 집중.
 
 - tags, files -> 
     tag 랑 file 을 각각 인식해서 그걸 배열로 반환해서 저장할 수 있게 하자. 일단 지금은 file 도 그냥 url 을 직접 써서 저장하는 방법으로 하자.

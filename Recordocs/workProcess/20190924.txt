@@ -1,7 +1,10 @@
 - today
 
-- editPost -> 관련된 editPostContainer, editor, useUploadInput 등의 렌더 시점이 달라서 각 컴포넌트에서 데이터를 읽을 수 있는 시점이 맞지 않아서 에러가 나는 듯.
-                useUploadInput 을 풀어서 editPostContainer 에서 string 으로 전달 할 수 있게해야 할 듯.
+- editPost 
+    -> 관련된 editPostContainer, editor, useUploadInput 등의 렌더 시점이 달라서 
+       각 컴포넌트에서 데이터를 읽을 수 있는 시점이 맞지 않아서 에러가 나는 듯.
+       useUploadInput 을 풀어서 editPostContainer 에서 string 으로 전달 할 수 있게해야 할 듯.
+        -> 콜백 함수를 쓰면 되려나.
 
 - editPost
     -> container 에서 post.title, post.text 를 loading 이 끝난 뒤에 presenter 로 전달해서

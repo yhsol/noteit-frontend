@@ -16,14 +16,14 @@ const LoggedInRoutes: React.FunctionComponent<{}> = () => {
   return (
     <Switch>
       <Route exact path="/" component={Feed} />
-      <Route path="/uploadpost" component={UploadPost} />
       <Route path="/explore" component={Explore} />
       <Route path="/notification" component={Notification} />
       <Route path="/search" component={Search} />
-      <Route exact path="/accounts" component={EditProfile} />
+      <Route path="/uploadpost" component={UploadPost} />
       <Route path="/post/:id" component={Post} />
       <Route path="/editpost/:id" component={EditPost} />
       <Route path="/profile/:username" component={Profile} />
+      <Route path="/editprofile/:username" component={EditProfile} />
       <Redirect path="*" to="/" />
     </Switch>
   );

@@ -79,13 +79,18 @@ const EditPostPresenter: React.FunctionComponent<IEditPostPresenterProps> = ({
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
   const editTitle = useUploadInput("" || contentTitle);
   const editText = useUploadInput("" || contentText);
+  console.log(title.value);
 
   return (
     <>
       <Wrapper>
         <TitleWrapper>
           <TitleForm>
-            <TitleInput placeholder={"title"} {...editTitle} />
+            <TitleInput
+              placeholder={"title"}
+              value={editTitle.value}
+              onChange={title.onChange}
+            />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
           <Button onClick={onSubmit}>save</Button>

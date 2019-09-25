@@ -51,8 +51,8 @@ const UploadInput: React.FunctionComponent<IInputProps> = ({
   return (
     <Form>
       <SInput
-        value={value}
         onChange={onChange}
+        value={value}
         placeholder={placeholder}
         required={required}
         type={type}

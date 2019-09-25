@@ -3,6 +3,9 @@ import UploadInput from "../Utils/UploadInput";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import media from "styled-media-query";
+import useUploadInput from "./Hooks/useUploadInput";
+import { useQuery } from "react-apollo-hooks";
+import { POST_QUERY } from "../Routes/Post/PostQuery";
 
 const Wrapper = styled.div`
   display: flex;
@@ -61,28 +64,43 @@ interface InputProps {
 }
 
 interface IEditorProps {
+  id?: string;
   title: InputProps;
   text: InputProps;
+  editTitle?: string;
+  editText?: string;
+  settitletitle?: any;
   onSubmit(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 const Editor: React.FunctionComponent<IEditorProps> = ({
   title,
   text,
-  onSubmit
+  onSubmit,
+  editTitle,
+  editText,
+  id
 }) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
+  const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
+  const post = data.seeFullPost;
+
   const [toggle, setToggle] = React.useState(false);
   const onClickToggle = () => {
     setToggle(!toggle);
   };
-
+  console.log(title);
+  const contentTitle = useUploadInput(editTitle);
   return (
     <>
       <Wrapper>
         <TitleWrapper>
           <TitleForm>
-            <TitleInput placeholder={"title"} {...title} />
+            <TitleInput
+              placeholder={"title"}
+              value={title.value}
+              onChange={title.onChange}
+            />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
           <div>

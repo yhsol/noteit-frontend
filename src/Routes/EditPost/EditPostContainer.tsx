@@ -37,17 +37,11 @@ const EditPostContainer: React.FunctionComponent<
   //     }
   //   };
   // }, []);
-
   const title = useUploadInput(titletitle);
-  const text = useUploadInput("");
-  const editPostMutation = useMutation(EDIT_POST, {
-    variables: {
-      id,
-      action: EDIT,
-      title: title.value,
-      text: text.value
-    }
-  });
+  const text = useUploadInput(texttext);
+  // 데이터들 전달하는게 문제가 아니었다.
+  // useMutation 에서 데이터를 읽는 시점이 렌더 되는 시점보다 빨라서 이 때 데이터가 없기 때문에 에러가 나는 것.
+  const editPostMutation = useMutation(EDIT_POST);
 
   // loading 이 끝난 뒤에야 데이터를 가져올 수 있기때문에 여기서 바로 데이터 요청하면 오류.
   const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -56,7 +50,14 @@ const EditPostContainer: React.FunctionComponent<
       try {
         const {
           data: { editPost }
-        } = await editPostMutation();
+        } = await editPostMutation({
+          variables: {
+            id,
+            title: title.value,
+            text: text.value,
+            action: EDIT
+          }
+        });
         console.log(editPost);
         toast.success("upload complete!");
         props.history.push(`/feed`);
@@ -71,7 +72,15 @@ const EditPostContainer: React.FunctionComponent<
       {loading && <Loader />}
       {!loading && data && post ? (
         <>
-          <Editor title={title} text={text} onSubmit={onSubmit} />
+          <Editor
+            id={id}
+            title={title}
+            text={text}
+            onSubmit={onSubmit}
+            editTitle={post.title}
+            editText={post.text}
+            settitletitle={settitletitle}
+          />
         </>
       ) : null}
     </>

@@ -8,7 +8,7 @@ type TypeUseInput = {
   setValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const useUploadInput = (defaultValue: string): TypeUseInput => {
+const useUploadInput = (defaultValue: any): TypeUseInput => {
   const [value, setValue] = useState<string>(defaultValue);
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const {

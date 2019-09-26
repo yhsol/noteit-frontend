@@ -38,6 +38,7 @@ interface IInputProps {
   required?: boolean;
   type?: string;
   className?: string;
+  name: string;
 }
 
 const UploadInput: React.FunctionComponent<IInputProps> = ({
@@ -46,7 +47,8 @@ const UploadInput: React.FunctionComponent<IInputProps> = ({
   placeholder,
   required = true,
   type = "text",
-  className
+  className,
+  name
 }) => {
   return (
     <Form>
@@ -57,6 +59,7 @@ const UploadInput: React.FunctionComponent<IInputProps> = ({
         required={required}
         type={type}
         className={className}
+        name={name}
       />
     </Form>
   );

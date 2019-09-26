@@ -10,6 +10,7 @@ import Profile from "../Routes/Profile";
 import Post from "../Routes/Post";
 import UploadPost from "../Routes/UploadPost";
 import EditPost from "../Routes/EditPost";
+import Add from "../Routes/Content/Add/Add";
 // TODO: 블로그이기 때문에 login 이 되지 않았을 때도 feed 를 보여줘야 됨.
 
 const LoggedInRoutes: React.FunctionComponent<{}> = () => {
@@ -20,6 +21,7 @@ const LoggedInRoutes: React.FunctionComponent<{}> = () => {
       <Route path="/notification" component={Notification} />
       <Route path="/search" component={Search} />
       <Route path="/uploadpost" component={UploadPost} />
+      <Route path="/add" component={Add} />
       <Route path="/post/:id" component={Post} />
       <Route path="/editpost/:id" component={EditPost} />
       <Route path="/profile/:username" component={Profile} />

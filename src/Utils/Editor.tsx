@@ -91,6 +91,14 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
   };
   console.log(title);
   const contentTitle = useUploadInput(editTitle);
+  const { setValue } = title;
+  // setValue(editTitle);
+  const _onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const {
+      target: { value }
+    } = e;
+    setValue(value);
+  };
   return (
     <>
       <Wrapper>
@@ -99,7 +107,8 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
             <TitleInput
               placeholder={"title"}
               value={title.value}
-              onChange={title.onChange}
+              onChange={_onChange}
+              name={title.value}
             />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
@@ -116,11 +125,11 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
                   <ReactMarkdown source={text.value} />
                 </div>
               )}
-              <TextInput placeholder={"content"} {...text} />
+              <TextInput placeholder={"content"} {...text} name={text.value} />
             </>
           ) : (
             <>
-              <TextInput placeholder={"content"} {...text} />
+              <TextInput placeholder={"content"} {...text} name={text.value} />
               {toggle === true && (
                 <div>
                   <ReactMarkdown source={text.value} />

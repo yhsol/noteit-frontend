@@ -1,9 +1,11 @@
 import * as React from "react";
-import UploadInput from "../../Utils/UploadInput";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import media from "styled-media-query";
+import { useQuery } from "react-apollo-hooks";
+import { POST_QUERY } from "../Post/PostQuery";
 import useUploadInput from "../../Utils/Hooks/useUploadInput";
+import TextareaAutosize from "react-autosize-textarea";
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const Wrapper = styled.div`
 
 const TitleWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4rem;
+  grid-template-columns: 1fr 7.1rem;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -36,17 +38,34 @@ const TitleForm = styled.form`
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
 `;
 
-const TitleInput = styled(UploadInput)`
-  font-size: 23px;
+const TitleInput = styled(TextareaAutosize)`
   border: none;
+  background-color: inherit;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+  resize: none;
+  font-size: 26px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
-const TextInput = styled(UploadInput)`
-  font-size: 20px;
+const TextInput = styled(TextareaAutosize)`
+  border: none;
+  background-color: inherit;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+  resize: none;
+  font-size: 26px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 const Button = styled.button`
-  width: 4rem;
+  width: 100%;
   height: 2rem;
   color: white;
   font-size: 17px;
@@ -61,26 +80,48 @@ interface InputProps {
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface IEditPostPresenterProps {
-  title: InputProps;
-  text: InputProps;
-  onSubmit(e: React.MouseEvent<HTMLButtonElement>): void;
-  contentTitle: string;
-  contentText: string;
+interface IEditorProps {
+  id?: string;
+  editTitle: string;
+  editText: string;
+  settitletitle?: any;
+  onSubmit: any;
 }
 
-const EditPostPresenter: React.FunctionComponent<IEditPostPresenterProps> = ({
-  title,
-  text,
+const EditPostPresenter: React.FunctionComponent<IEditorProps> = ({
   onSubmit,
-  contentTitle,
-  contentText
+  editTitle,
+  editText,
+  id
 }) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
-  const editTitle = useUploadInput("" || contentTitle);
-  const editText = useUploadInput("" || contentText);
-  console.log(title.value);
+  const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
+  const post = data.seeFullPost;
 
+  const [toggle, setToggle] = React.useState(false);
+  const onClickToggle = () => {
+    setToggle(!toggle);
+  };
+  const contentTitle = useUploadInput(editTitle);
+  const contentTExt = useUploadInput(editText);
+
+  const [value, setValue] = React.useState<string>(editTitle);
+  const [textValue, setTextVallue] = React.useState<string>(editText);
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const {
+      target: { value }
+    } = e;
+    setValue(value);
+  };
+  const textonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const {
+      target: { value }
+    } = e;
+    setTextVallue(value);
+  };
+  const _onSubmit = () => {
+    onSubmit(value, textValue);
+  };
   return (
     <>
       <Wrapper>
@@ -88,27 +129,45 @@ const EditPostPresenter: React.FunctionComponent<IEditPostPresenterProps> = ({
           <TitleForm>
             <TitleInput
               placeholder={"title"}
-              value={editTitle.value}
-              onChange={title.onChange}
+              value={value}
+              onChange={onChange}
+              name={"name"}
             />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
-          <Button onClick={onSubmit}>save</Button>
+          <div>
+            <Button onClick={_onSubmit}>save</Button>
+            <Button onClick={onClickToggle}>markdown</Button>
+          </div>
         </TitleWrapper>
         <TextWrapper>
           {!smallMedia ? (
             <>
-              <div>
-                <ReactMarkdown source={editText.value} />
-              </div>
-              <TextInput placeholder={"content"} {...editText} />
+              {toggle === true && (
+                <div>
+                  <ReactMarkdown source={textValue} />
+                </div>
+              )}
+              <TextInput
+                placeholder={"content"}
+                value={textValue}
+                onChange={textonChange}
+                name={textValue}
+              />
             </>
           ) : (
             <>
-              <TextInput placeholder={"content"} {...editText} />
-              <div>
-                <ReactMarkdown source={editText.value} />
-              </div>
+              <TextInput
+                placeholder={"content"}
+                value={textValue}
+                onChange={textonChange}
+                name={textValue}
+              />
+              {toggle === true && (
+                <div>
+                  <ReactMarkdown source={textValue} />
+                </div>
+              )}
             </>
           )}
         </TextWrapper>

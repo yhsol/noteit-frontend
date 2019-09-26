@@ -76,7 +76,7 @@ const UploadPostPresenter: React.FunctionComponent<
       <Wrapper>
         <TitleWrapper>
           <TitleForm>
-            <TitleInput placeholder={"title"} {...title} />
+            <TitleInput placeholder={"title"} {...title} name={title.value} />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
           <Button onClick={onSubmit}>save</Button>
@@ -87,11 +87,11 @@ const UploadPostPresenter: React.FunctionComponent<
               <div>
                 <ReactMarkdown source={text.value} />
               </div>
-              <TextInput placeholder={"content"} {...text} />
+              <TextInput placeholder={"content"} {...text} name={text.value} />
             </>
           ) : (
             <>
-              <TextInput placeholder={"content"} {...text} />
+              <TextInput placeholder={"content"} {...text} name={text.value} />
               <div>
                 <ReactMarkdown source={text.value} />
               </div>

@@ -1,0 +1,25 @@
+- edit post
+ container 가 모든 로직을 갖고 있지 않아도 됨.
+ 데이터를  presenter 로 전달하고, 그 presenter 에서 editor 컴포넌트에서 읽을 수 있는 함수 등의 형태를 만들어
+ 값을 읽고 값을 변경할 수 있게(value change) 구성함.
+ presenter 에서 onChange, onSubmit 함수 작성하여 데이터를 다시 변화에 맞게 반영할 수 있게 만든다.
+
+- tag 기능.
+- file 기능은 간단하게나마 구현.
+- notification 기능.
+- delete & edit 버튼
+  -> edit 일 때는 edit 컴포넌트로 이동.
+    delete 일 때는 삭제.
+    post 컴포넌트에서 해당 query 를 읽어와서 action 값과 route 경로를 같이 전달해야 할 듯.
+
+- markdown editor 의 특성을 높일 수 있게 집중. 가볍고, 우아하게 동작하게 하자. 기본 앱이 동작하듯이 아주 가볍게.
+    -> 많은 리팩토링 필요.
+        - 필요한 query 만 가져오기.
+        - styled-components 의 rebass 사용해서 코드 줄이기.
+        - 줄일 거 쵀대한 줄이고, 추가할 수 있는 애니메이션 추가해보기.
+
+- 기능적인 구현 완료.
+
+- pwa 이전 단계 까지 완료.
+
+- files, tags 를 지정할 방법 탐색.    -> files 는 로컬에서 이미지를 찾는 것까지 구현해서 당장은 못할 듯.

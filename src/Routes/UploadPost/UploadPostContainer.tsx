@@ -1,5 +1,4 @@
 import * as React from "react";
-import UPloadPostPresenter from "./UploadPostPresenter";
 import { useMutation } from "react-apollo-hooks";
 import { UPLOAD_POST } from "./UploadPostQuery";
 import { toast } from "react-toastify";

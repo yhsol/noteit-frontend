@@ -78,8 +78,6 @@ const InfoDataItem = styled.span`
   color: rgba(0, 0, 0, 0.5);
 `;
 
-const Small = styled.div``;
-
 interface IUserProps {
   id: string;
   username: string;
@@ -129,8 +127,7 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
   setCommentCount
 }) => {
   const { username } = user;
-  const date = createdAt.toString();
-  // console.log(files[0]);
+  const date = createdAt.toString().substring(0, 10);
   return (
     <Section>
       <Wrapper>
@@ -162,7 +159,7 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
               <InfoDataItem>{commentCount}</InfoDataItem>
             </InfoData>
             <InfoData>
-              <InfoDataItem>{date.substring(0, 10)}</InfoDataItem>
+              <InfoDataItem>{date}</InfoDataItem>
             </InfoData>
           </InfoSection>
         </TextSection>

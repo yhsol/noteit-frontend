@@ -35,6 +35,24 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
+const TitleWrapper = styled.div`
+  margin-bottom: 2rem;
+`;
+
+const Title = styled.h1`
+  margin: 1rem 0;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+`;
+
+const Text = styled.div`
+  font-size: 21px;
+`;
+
 const FileWrapper = styled.div`
   width: 300px;
   height: 300px;
@@ -65,14 +83,19 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   createdAt
 }) => {
   console.log(files);
+  const date = createdAt.toString().substring(0, 10);
+
   return (
     <>
       <Wrapper>
-        <h1>{title}</h1>
-        <div>{id}</div>
-        <div>{user.username}</div>
-        <div>{createdAt}</div>
-        <div>{text}</div>
+        <TitleWrapper>
+          <Title>{title}</Title>
+          <Info>
+            <div>{user.username}</div>
+            <div>{date}</div>
+          </Info>
+        </TitleWrapper>
+        <Text>{text}</Text>
         <FileWrapper>
           {files &&
             files.map(file => (

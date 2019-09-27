@@ -1,0 +1,8 @@
+edit post success!
+
+-  title 과 text 의 value 와 그 value 를 변경할 set 함수를 각각 지정해줘야한다.
+그리고 해당 값들을 _onSubmit 에서 넣어서 onSubmit 에 전달한다.
+onSubmit 은 이벤트가 아닌 title 과 text 의 value 를 가져가서 저장한다.
+그러니까 전달된 post의 value 값을 읽고, 그 값을 onChange 하고, 그 값을 전달된 함수에 넣어서 submit 한다.
+
+이 과정은 정리를 잘 해둬야겠다.

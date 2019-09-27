@@ -14,6 +14,7 @@ const PostContainer: React.FunctionComponent<IPostContaienr> = ({
 }) => {
   const { data, loading } = useQuery(POST_QUERY, { variables: { id: postId } });
   const post = data.seeFullPost;
+  console.log(data);
   return (
     <>
       {loading && <Loader />}

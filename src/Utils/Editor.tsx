@@ -3,9 +3,6 @@ import UploadInput from "../Utils/UploadInput";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import media from "styled-media-query";
-import useUploadInput from "./Hooks/useUploadInput";
-import { useQuery } from "react-apollo-hooks";
-import { POST_QUERY } from "../Routes/Post/PostQuery";
 
 const Wrapper = styled.div`
   display: flex;
@@ -82,15 +79,12 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
   id
 }) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
-  const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
-  const post = data.seeFullPost;
 
   const [toggle, setToggle] = React.useState(false);
   const onClickToggle = () => {
     setToggle(!toggle);
   };
   console.log(title);
-  const contentTitle = useUploadInput(editTitle);
   const { setValue } = title;
   // setValue(editTitle);
   const _onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

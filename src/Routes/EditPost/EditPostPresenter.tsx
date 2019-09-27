@@ -2,9 +2,6 @@ import * as React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import media from "styled-media-query";
-import { useQuery } from "react-apollo-hooks";
-import { POST_QUERY } from "../Post/PostQuery";
-import useUploadInput from "../../Utils/Hooks/useUploadInput";
 import TextareaAutosize from "react-autosize-textarea";
 
 const Wrapper = styled.div`
@@ -82,45 +79,40 @@ interface InputProps {
 
 interface IEditorProps {
   id?: string;
-  editTitle: string;
-  editText: string;
-  settitletitle?: any;
+  title: string;
+  text: string;
   onSubmit: any;
 }
 
 const EditPostPresenter: React.FunctionComponent<IEditorProps> = ({
   onSubmit,
-  editTitle,
-  editText,
+  title,
+  text,
   id
 }) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
-  const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
-  const post = data.seeFullPost;
 
   const [toggle, setToggle] = React.useState(false);
   const onClickToggle = () => {
     setToggle(!toggle);
   };
-  const contentTitle = useUploadInput(editTitle);
-  const contentTExt = useUploadInput(editText);
 
-  const [value, setValue] = React.useState<string>(editTitle);
-  const [textValue, setTextVallue] = React.useState<string>(editText);
+  const [editTitle, setEditTitle] = React.useState<string>(title);
+  const [editText, setEditText] = React.useState<string>(text);
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const {
       target: { value }
     } = e;
-    setValue(value);
+    setEditTitle(value);
   };
   const textonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const {
       target: { value }
     } = e;
-    setTextVallue(value);
+    setEditText(value);
   };
   const _onSubmit = () => {
-    onSubmit(value, textValue);
+    onSubmit(editTitle, editText);
   };
   return (
     <>
@@ -129,7 +121,7 @@ const EditPostPresenter: React.FunctionComponent<IEditorProps> = ({
           <TitleForm>
             <TitleInput
               placeholder={"title"}
-              value={value}
+              value={editTitle}
               onChange={onChange}
               name={"name"}
             />
@@ -145,27 +137,27 @@ const EditPostPresenter: React.FunctionComponent<IEditorProps> = ({
             <>
               {toggle === true && (
                 <div>
-                  <ReactMarkdown source={textValue} />
+                  <ReactMarkdown source={editText} />
                 </div>
               )}
               <TextInput
                 placeholder={"content"}
-                value={textValue}
+                value={editText}
                 onChange={textonChange}
-                name={textValue}
+                name={editText}
               />
             </>
           ) : (
             <>
               <TextInput
                 placeholder={"content"}
-                value={textValue}
+                value={editText}
                 onChange={textonChange}
-                name={textValue}
+                name={editText}
               />
               {toggle === true && (
                 <div>
-                  <ReactMarkdown source={textValue} />
+                  <ReactMarkdown source={editText} />
                 </div>
               )}
             </>

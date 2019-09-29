@@ -36,6 +36,7 @@ interface IInputProps {
   required?: boolean;
   type?: string;
   className?: string;
+  icon?: boolean;
 }
 
 const Input: React.FunctionComponent<IInputProps> = ({
@@ -44,7 +45,8 @@ const Input: React.FunctionComponent<IInputProps> = ({
   placeholder,
   required = true,
   type = "text",
-  className
+  className,
+  icon
 }) => {
   return (
     <Form>
@@ -56,9 +58,11 @@ const Input: React.FunctionComponent<IInputProps> = ({
         type={type}
         className={className}
       />
-      <SButton>
-        <SearchIcon size={17} />
-      </SButton>
+      {icon && (
+        <SButton>
+          <SearchIcon size={17} />
+        </SButton>
+      )}
     </Form>
   );
 };

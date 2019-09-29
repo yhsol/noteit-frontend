@@ -71,7 +71,6 @@ const InfoData = styled.span`
   display: flex;
   margin-right: 1rem;
   font-size: 14px;
-  align-items: center;
 `;
 
 const InfoDataItem = styled.span`
@@ -106,12 +105,9 @@ interface IPostListPresenter {
   likeCount: number;
   commentCount: number;
   createdAt: number;
-  newComment: any;
-  setIsLiked: any;
-  setLikeCount: any;
-  setCommentCount: any;
+  updatedAt: number;
 }
-const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
+const PostListForm: React.FunctionComponent<IPostListPresenter> = ({
   id,
   user,
   title,
@@ -122,10 +118,7 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
   likeCount,
   commentCount,
   createdAt,
-  newComment,
-  setIsLiked,
-  setLikeCount,
-  setCommentCount
+  updatedAt
 }) => {
   const { username } = user;
   const date = createdAt.toString().substring(0, 10);
@@ -177,4 +170,4 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
   );
 };
 
-export default PostListPresenter;
+export default PostListForm;

@@ -91,25 +91,21 @@ const HeaderSmall: React.FunctionComponent<IHeaderProps> = props => {
       {menuOpen === "open" && (
         <SideMenu>
           {!data.me ? (
-            <Link to="/profile">
-              <UserIcon />
-            </Link>
+            <Link to="/profile">profile</Link>
           ) : (
-            <Link to={data.me.username}>
-              <UserIcon />
-            </Link>
+            <Link to={data.me.username}>profile</Link>
           )}
           <Link to="profile" onClick={toggleMenu}>
-            profile!
+            post
           </Link>
           <Link to="profile" onClick={toggleMenu}>
-            profile!
+            bookmark
           </Link>
           <Link to="profile" onClick={toggleMenu}>
-            profile!
+            settings
           </Link>
           <Link to="profile" onClick={toggleMenu}>
-            profile!
+            sign out
           </Link>
         </SideMenu>
       )}

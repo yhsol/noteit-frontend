@@ -57,12 +57,12 @@ const FooterSmall: React.FunctionComponent<IFooterProps> = () => {
         <HeaderItem to="/notification">
           <NotificationIcon />
         </HeaderItem>
-        {!data.me ? (
-          <HeaderItem to="/#">
+        {data.me ? (
+          <HeaderItem to={`/profile/${data.me.username}`}>
             <UserIcon />
           </HeaderItem>
         ) : (
-          <HeaderItem to={data.me.username}>
+          <HeaderItem to="/">
             <UserIcon />
           </HeaderItem>
         )}

@@ -10,7 +10,8 @@ type IPostContaienr = RouteComponentProps<{ id: string }, any, any>;
 const PostContainer: React.FunctionComponent<IPostContaienr> = ({
   match: {
     params: { id: postId }
-  }
+  },
+  history
 }) => {
   const { data, loading } = useQuery(POST_QUERY, { variables: { id: postId } });
   const post = data.seeFullPost;
@@ -30,6 +31,7 @@ const PostContainer: React.FunctionComponent<IPostContaienr> = ({
           likeCount={post.likeCount}
           commentCount={post.commentCount}
           createdAt={post.createdAt}
+          history={history}
         />
       )}
     </>

@@ -20,6 +20,7 @@ const Search: React.FunctionComponent<ISearchProps> = props => {
           value={search.value}
           onChange={search.onChange}
           placeholder="search.."
+          icon={true}
         />
       </form>
     </div>

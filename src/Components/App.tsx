@@ -13,8 +13,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FooterSmall from "./LayOut/FooterSmall";
 import HeaderSmall from "./LayOut/HeaderSmall";
-import media from "styled-media-query";
-import { Big, Small } from "../Utils/MediaQuery";
 
 interface IAppProps {}
 
@@ -66,7 +64,6 @@ const App: React.FunctionComponent<IAppProps> = () => {
                 <FooterSmall />
               </>
             )}
-
             <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
           </>
         </Router>

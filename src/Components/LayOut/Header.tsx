@@ -5,12 +5,14 @@ import {
   NotificationIcon,
   UserIcon,
   ExploreIcon,
-  PenIcon
+  PenIcon,
+  SearchIcon
 } from "../../Utils/Icons";
 import useInput from "../../Utils/Hooks/useInput";
 import Input from "../../Utils/Input";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../../SharedQuery";
+import media from "styled-media-query";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,6 +34,16 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 71%;
+`;
+
+const SearchForm = styled.form`
+  ${media.lessThan("medium")`display: none;`}
+`;
+
+const SearchIconForm = styled(Link)`
+  ${media.greaterThan("medium")`
+  display: none;
+  `}
 `;
 
 const HeaderItems = styled.li`
@@ -88,14 +100,18 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
           <Link to="/" style={{ fontSize: "26px", color: "#f7a400" }}>
             noteit
           </Link>
-          <form onSubmit={onSearchSubmit}>
+          <SearchForm onSubmit={onSearchSubmit}>
             <Input
               value={search.value}
               onChange={search.onChange}
               placeholder="search.."
+              icon={true}
             />
-          </form>
+          </SearchForm>
           <HeaderItems>
+            <SearchIconForm to="/search">
+              <SearchIcon />
+            </SearchIconForm>
             <HeaderItem to="/uploadpost">
               <PenIcon />
             </HeaderItem>
@@ -123,21 +139,21 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
       {menuOpen === "open" && (
         <SideMenu>
           {!data.me ? (
-            <Link to="/profile">profile!</Link>
+            <Link to="/profile">profile</Link>
           ) : (
-            <Link to={data.me.username}>profile!</Link>
+            <Link to={`/profile/${data.me.username}`}>profile</Link>
           )}
           <Link to="/profile" onClick={toggleMenu}>
-            profile!
+            post
           </Link>
           <Link to="/profile" onClick={toggleMenu}>
-            profile!
+            bookmark
           </Link>
           <Link to="/profile" onClick={toggleMenu}>
-            profile!
+            settings
           </Link>
           <Link to="profile" onClick={toggleMenu}>
-            profile!
+            sign out
           </Link>
         </SideMenu>
       )}

@@ -1,2 +1,6 @@
 - Feed 와 PostList 의 관계.
  -> 그렇다면 Post 에도 PostRoot 가 필요한가.
+
+ - 프로세스에서 data 와 history, location 등이 같이 필요한 경우,
+    root 파일을 만들어서 root 에서는 id 를 가져오고,
+    container 에서 history, location 등을 가져오는 식으로 하나의 과정을 더 두는게 필요.

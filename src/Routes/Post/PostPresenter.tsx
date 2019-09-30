@@ -35,6 +35,9 @@ interface IPostPresenter {
   commentCount: number;
   createdAt: number;
   history: any;
+  toggleLike: any;
+  isLikedState: boolean;
+  likeCountState: number;
 }
 
 const Wrapper = styled.div`
@@ -120,6 +123,20 @@ const Button = styled.button`
   border-radius: ${props => props.theme.borderRadius};
 `;
 
+const PostButton = styled.span`
+  cursor: pointer;
+`;
+
+const PostButtons = styled.div`
+  display: flex;
+  ${PostButton} {
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+  margin-bottom: 5px;
+`;
+
 const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   id,
   user,
@@ -131,9 +148,12 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   likeCount,
   commentCount,
   createdAt,
-  history
+  history,
+  toggleLike,
+  isLikedState,
+  likeCountState
 }) => {
-  console.log(files);
+  console.log(isLiked);
   const date = createdAt.toString().substring(0, 10);
   console.log(user.avatar);
   const image = "https://image.flaticon.com/icons/svg/258/258428.svg";
@@ -198,20 +218,20 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
         <div>
           {tags && tags.map(tag => <Tag key={tag.id}>#{tag.text}</Tag>)}
         </div>
-        <InfoSection>
-          <InfoData>
-            {isLiked ? (
+        <PostButtons>
+          <PostButton onClick={toggleLike}>
+            {isLikedState ? (
               <FullHeartIcon size={20} />
             ) : (
               <EmptyHeartIcon size={20} />
             )}
-            <InfoDataItem>{likeCount}</InfoDataItem>
-          </InfoData>
-          <InfoData>
+          </PostButton>
+          <InfoDataItem>{likeCountState}</InfoDataItem>
+          <PostButton>
             <CommentIcon size={20} />
             <InfoDataItem>{commentCount}</InfoDataItem>
-          </InfoData>
-        </InfoSection>
+          </PostButton>
+        </PostButtons>
       </Wrapper>
     </>
   );

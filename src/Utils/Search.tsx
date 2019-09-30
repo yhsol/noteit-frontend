@@ -1,7 +1,7 @@
 import React from "react";
-import useInput from "../Utils/Hooks/useInput";
+import useInput from "./Hooks/useInput";
 import { withRouter, RouteComponentProps } from "react-router";
-import Input from "../Utils/Input";
+import Input from "./Input";
 
 // TODO: search 컴포넌트에서 input 부분은 작은 화면에서만 보여줘야 됨.
 

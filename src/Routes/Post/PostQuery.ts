@@ -43,3 +43,21 @@ export const POST_QUERY = gql`
     }
   }
 `;
+
+export const TOGGLE_LIKE = gql`
+  mutation toggleLike($postId: String!) {
+    toggleLike(postId: $postId)
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addCommnet($postId: String!, $text: String!) {
+    addCommnet(postId: $postId, text: $text) {
+      id
+      text
+      user {
+        username
+      }
+    }
+  }
+`;

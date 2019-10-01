@@ -32,6 +32,7 @@ const UploadPostContainer: React.FunctionComponent<
         } = await uploadPostMutation();
         toast.success("upload complete!");
         props.history.push(`/feed`);
+        window.location.reload();
       } catch (error) {
         toast.error("Can't upload post!");
       }

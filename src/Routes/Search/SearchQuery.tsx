@@ -7,7 +7,7 @@ export const SEARCH = gql`
       username
       avatar
       itsMe
-      isFollwoing
+      isFollowing
     }
     searchPost(term: $term) {
       id
@@ -15,7 +15,7 @@ export const SEARCH = gql`
         url
       }
       likeCount
-      commentcount
+      commentCount
       title
       text
       user {

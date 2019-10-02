@@ -1,0 +1,3 @@
+- search 에러
+    -> always! 스펠링 정확히 하자.
+        isFollowing, commentCount 에 오타가 있었다.

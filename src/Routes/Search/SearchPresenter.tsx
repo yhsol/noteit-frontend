@@ -38,7 +38,10 @@ const SearchPresenter: React.FunctionComponent<ISearchPresenterProps> = ({
   data,
   searchTerm
 }) => {
-  console.log(data);
+  const searchUser = data.searchUser;
+  const searchPost = data.searchPost;
+  const searchTag = data.searchTag;
+  console.log(data.searchPost);
   if (searchTerm === undefined) {
     return (
       <Wrapper>
@@ -51,8 +54,68 @@ const SearchPresenter: React.FunctionComponent<ISearchPresenterProps> = ({
         <Loader />
       </Wrapper>
     );
-  } else if (data && data.searchUser && data.searchPost && data.searchTag) {
-    return <div>{searchTerm}</div>;
+  } else if (data && searchUser && searchPost && searchTag) {
+    return (
+      <Wrapper>
+        {searchUser.length === 0 &&
+        searchPost.length === 0 &&
+        searchTag.length === 0 ? (
+          <div>
+            <BoldText text={`"${searchTerm}" was not found `} />
+          </div>
+        ) : (
+          <>
+            <div>
+              {searchUser.length !== 0 && (
+                <div>User Result({searchUser.length})</div>
+              )}
+              {searchUser.length === 0
+                ? "no serach result for user!"
+                : searchUser.map((user: any) => (
+                    <div key={user.id}>
+                      {user.username}
+                      <div>
+                        {user.isFollowing ? "isFollowing!" : "isNotFollowing!"}
+                      </div>
+                    </div>
+                  ))}
+            </div>
+            <div>
+              {searchPost.length !== 0 && (
+                <div>Post Result({searchPost.length})</div>
+              )}
+              {searchPost.length === 0
+                ? "no search result for post!"
+                : searchPost.map((post: any) => (
+                    <div key={post.id}>
+                      <div>{post.title}</div>
+                      <div>{post.text.substring(0, 50)}</div>
+                    </div>
+                  ))}
+            </div>
+            <div>
+              {searchTag.length !== 0 && (
+                <div>Tag Reulst({searchTag.length})</div>
+              )}
+              {searchTag.length === 0
+                ? "no serach result for tag!"
+                : searchTag.map((tag: any) => (
+                    <div>
+                      <div>#{tag.text}</div>
+                    </div>
+                  ))}
+            </div>
+            {/* 각각을 어떤 식으로 보여줄 것인가.
+              user 검색의 경우 아이디와 팔로잉 여부, -> username, isFollowing
+              post 검색의 경우 title 과 text 의 일부, -> title, text, username, tag, isLiked, likeCount, commentCount
+              tag 의 경우 각 tag 를 포함하는 post 의 title 과 text 의 일부. -> tag, postLink
+              각각의 영역을 나누는 방법(아마도 새로 링크를 만들어 각각을 특정하여 보여주는 페이지로 이동) 과
+              해당 값들을 보여줄 방식을 생각해 봐야 할 듯.
+          */}
+          </>
+        )}
+      </Wrapper>
+    );
   } else {
     return <div>where is data?</div>;
   }

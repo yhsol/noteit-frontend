@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { EDIT_POST } from "../EditPost/EditPostQuery";
 import { useMutation } from "react-apollo-hooks";
 import { toast } from "react-toastify";
+import ReactMarkdown from "react-markdown";
+
 interface IUserProps {
   id: string;
   username: string;
@@ -88,7 +90,7 @@ const InfoSection = styled.div`
 const InfoData = styled.span`
   display: flex;
   margin-right: 1rem;
-  font-size: 20px;
+  font-size: 14px;
   align-items: center;
 `;
 
@@ -125,6 +127,10 @@ const Button = styled.button`
 
 const PostButton = styled.span`
   cursor: pointer;
+  display: flex;
+  margin-right: 1rem;
+  font-size: 14px;
+  align-items: center;
 `;
 
 const PostButtons = styled.div`
@@ -135,6 +141,7 @@ const PostButtons = styled.div`
     }
   }
   margin-bottom: 5px;
+  align-items: center;
 `;
 
 const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
@@ -208,7 +215,8 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
             <Button onClick={onSubmit}>delete</Button>
           </div>
         </TitleGrid>
-        <Text>{text}</Text>
+        <ReactMarkdown source={text} />
+
         <FileWrapper>
           {files &&
             files.map(file => (
@@ -225,8 +233,8 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
             ) : (
               <EmptyHeartIcon size={20} />
             )}
+            <InfoDataItem>{likeCountState}</InfoDataItem>
           </PostButton>
-          <InfoDataItem>{likeCountState}</InfoDataItem>
           <PostButton>
             <CommentIcon size={20} />
             <InfoDataItem>{commentCount}</InfoDataItem>

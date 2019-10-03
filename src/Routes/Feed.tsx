@@ -26,6 +26,7 @@ const Feed = () => {
             likeCount={postList.likeCount}
             commentCount={postList.commentCount}
             createdAt={postList.createdAt}
+            updatedAt={postList.updatedAt}
           />
         ))}
     </>

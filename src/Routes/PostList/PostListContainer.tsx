@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PostListPresenter from "./PostListPresenter";
 import useInput from "../../Utils/Hooks/useInput";
+import PostListForm from "../../Components/LayOut/PostListForm";
 
 interface IUserProps {
   id: string;
@@ -29,6 +30,7 @@ interface IPostListContaienr {
   likeCount: number;
   commentCount: number;
   createdAt: number;
+  updatedAt: number;
 }
 
 const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
@@ -41,14 +43,15 @@ const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
   isLiked,
   likeCount,
   commentCount,
-  createdAt
+  createdAt,
+  updatedAt
 }) => {
   const [isLikedState, setIsLiked] = useState<boolean>(isLiked);
   const [likeCountState, setLikeCount] = useState<number>(likeCount);
   const [commentCountState, setCommentCount] = useState<number>(commentCount);
   const comment = useInput("");
   return (
-    <PostListPresenter
+    <PostListForm
       id={id}
       user={user}
       title={title}
@@ -59,10 +62,7 @@ const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
       likeCount={likeCountState}
       commentCount={commentCountState}
       createdAt={createdAt}
-      newComment={comment}
-      setIsLiked={setIsLiked}
-      setLikeCount={setLikeCount}
-      setCommentCount={setCommentCount}
+      updatedAt={updatedAt}
     />
   );
 };

@@ -4,6 +4,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { FullHeartIcon, EmptyHeartIcon, CommentIcon } from "../../Utils/Icons";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const Section = styled.div`
   display: grid;
@@ -15,6 +16,7 @@ const Wrapper = styled.div`
   grid-template-columns: 8fr 2fr;
   grid-auto-rows: 100px;
   grid-template-rows: 100px;
+  margin-bottom: 2rem;
 `;
 
 const TextSection = styled.div`
@@ -24,7 +26,7 @@ const TextSection = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 0.5rem;
   margin-right: 2rem;
   font-weight: 600;
@@ -35,7 +37,7 @@ const Title = styled.h2`
 
 const SubTitle = styled.div`
   color: rgba(0, 0, 0, 0.55);
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
   font-size: 17px;
 `;
 
@@ -71,6 +73,7 @@ const InfoData = styled.span`
   display: flex;
   margin-right: 1rem;
   font-size: 14px;
+  align-items: center;
 `;
 
 const InfoDataItem = styled.span`
@@ -122,19 +125,16 @@ const PostListForm: React.FunctionComponent<IPostListPresenter> = ({
 }) => {
   const { username } = user;
   const date = createdAt.toString().substring(0, 10);
+  const markdownText = () =>
+    text.length > 73 ? `${text.substring(0, 73)}...` : text;
+
   return (
     <Section>
       <Wrapper>
         <TextSection>
           <Link to={id && `post/${id}`}>
             <Title>{title}</Title>
-            <SubTitle>
-              {text.length > 73 ? (
-                <span>{text.substring(0, 73)}...</span>
-              ) : (
-                text
-              )}
-            </SubTitle>
+            <SubTitle>{markdownText()}</SubTitle>
           </Link>
           <Link to={username && `profile/${username}`}>
             <Author>{username}</Author>

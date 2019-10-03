@@ -44,6 +44,8 @@ const TextInput = styled(UploadInput)`
   font-size: 20px;
 `;
 
+const Buttons = styled.div``;
+
 const Button = styled.button`
   width: 100%;
   height: 2rem;
@@ -52,6 +54,7 @@ const Button = styled.button`
   background-color: ${props => props.theme.greyColor};
   border: 0;
   border-radius: ${props => props.theme.borderRadius};
+  margin-right: 0.3rem;
 `;
 
 interface InputProps {
@@ -106,10 +109,10 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
             />
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
-          <div>
+          <Buttons>
             <Button onClick={onSubmit}>save</Button>
             <Button onClick={onClickToggle}>markdown</Button>
-          </div>
+          </Buttons>
         </TitleWrapper>
         <TextWrapper>
           {!smallMedia ? (

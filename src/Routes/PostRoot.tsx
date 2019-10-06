@@ -15,7 +15,7 @@ const Post: React.FunctionComponent<IPostProps> = ({
 }) => {
   const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
   const post = data.seeFullPost;
-
+  console.log(history);
   return (
     <>
       {loading && <Loader />}
@@ -32,7 +32,7 @@ const Post: React.FunctionComponent<IPostProps> = ({
             likeCount={post.likeCount}
             commentCount={post.commentCount}
             createdAt={post.createdAt}
-            history={post.history}
+            history={history}
           />
         </>
       ) : null}

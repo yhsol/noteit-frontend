@@ -160,7 +160,7 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   isLikedState,
   likeCountState
 }) => {
-  console.log(isLiked);
+  console.log(history);
   const date = createdAt.toString().substring(0, 10);
   console.log(user.avatar);
   const image = "https://image.flaticon.com/icons/svg/258/258428.svg";
@@ -184,9 +184,9 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
           }
         });
         console.log(editPost);
-        history.push("/");
-        window.location.reload();
         toast.success("delete complete!");
+        history.push("/feed");
+        window.location.reload();
       } catch (error) {
         toast.error("Can't delete post!");
       }

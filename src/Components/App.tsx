@@ -49,7 +49,7 @@ const App: React.FunctionComponent<IAppProps> = () => {
           <>
             {smallMedia ? (
               <>
-                <Header />
+                {isLoggedIn && <Header />}
                 <Wrapper>
                   <RouterComponent isLoggedIn={isLoggedIn} />
                 </Wrapper>
@@ -57,7 +57,7 @@ const App: React.FunctionComponent<IAppProps> = () => {
               </>
             ) : (
               <>
-                <HeaderSmall />
+                {isLoggedIn && <HeaderSmall />}
                 <SmallWrapper>
                   <RouterComponent isLoggedIn={isLoggedIn} />
                 </SmallWrapper>

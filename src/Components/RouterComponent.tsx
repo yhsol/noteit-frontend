@@ -36,6 +36,7 @@ const LoggedOutRoutes: React.FunctionComponent<{}> = () => {
   return (
     <Switch>
       <Route exact path="/" component={Auth} />
+      <Route path="/feed" component={Feed} />
       <Redirect path="*" to="/" />
     </Switch>
   );

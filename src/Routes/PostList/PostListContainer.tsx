@@ -49,7 +49,6 @@ const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
   const [isLikedState, setIsLiked] = useState<boolean>(isLiked);
   const [likeCountState, setLikeCount] = useState<number>(likeCount);
   const [commentCountState, setCommentCount] = useState<number>(commentCount);
-  const comment = useInput("");
   return (
     <PostListForm
       id={id}

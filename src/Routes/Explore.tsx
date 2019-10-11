@@ -35,7 +35,7 @@ const EXPLORE_QUERY = gql`
 
 const Explore = () => {
   const { data, loading } = useQuery(EXPLORE_QUERY);
-  console.log(data);
+  // console.log(data);
   return (
     <>
       {loading && <Loader />}

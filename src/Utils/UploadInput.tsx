@@ -25,12 +25,6 @@ const SInput = styled(TextareaAutosize)`
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
-const SButton = styled.button`
-  border: none;
-  background-color: inherit;
-  cursor: pointer;
-`;
-
 interface IInputProps {
   value?: string;
   placeholder?: string;

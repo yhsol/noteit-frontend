@@ -78,22 +78,6 @@ const Info = styled.div`
   font-size: 14px;
 `;
 
-const Text = styled.div`
-  font-size: 21px;
-`;
-
-const InfoSection = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const InfoData = styled.span`
-  display: flex;
-  margin-right: 1rem;
-  font-size: 14px;
-  align-items: center;
-`;
-
 const InfoDataItem = styled.span`
   margin-left: 5px;
   color: rgba(0, 0, 0, 0.5);
@@ -160,9 +144,9 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   isLikedState,
   likeCountState
 }) => {
-  console.log(history);
+  // console.log(history);
   const date = createdAt.toString().substring(0, 10);
-  console.log(user.avatar);
+  // console.log(user.avatar);
   const image = "https://image.flaticon.com/icons/svg/258/258428.svg";
   const [avatar, setAvatar] = React.useState(user.avatar || image);
   // mutation

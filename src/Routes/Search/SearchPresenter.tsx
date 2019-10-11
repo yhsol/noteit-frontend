@@ -41,7 +41,7 @@ const SearchPresenter: React.FunctionComponent<ISearchPresenterProps> = ({
   const searchUser = data.searchUser;
   const searchPost = data.searchPost;
   const searchTag = data.searchTag;
-  console.log(data.searchPost);
+  // console.log(data.searchPost);
   if (searchTerm === undefined) {
     return (
       <Wrapper>

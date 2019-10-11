@@ -87,7 +87,7 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
   const onClickToggle = () => {
     setToggle(!toggle);
   };
-  console.log(title);
+  // console.log(title);
   const { setValue } = title;
   // setValue(editTitle);
   const _onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -4,7 +4,6 @@ import * as React from "react";
 import styled from "styled-components";
 import { FullHeartIcon, EmptyHeartIcon, CommentIcon } from "../../Utils/Icons";
 import { Link } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 
 const Section = styled.div`
   display: grid;

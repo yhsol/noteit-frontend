@@ -6,7 +6,6 @@ import Notification from "../Routes/Notification";
 import EditProfile from "../Routes/EditProfile";
 import Auth from "../Routes/Auth";
 import Profile from "../Routes/Profile";
-import Post from "../Routes/Post";
 import UploadPost from "../Routes/UploadPost";
 import EditPost from "../Routes/EditPost";
 import PostRoot from "../Routes/PostRoot";

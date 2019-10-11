@@ -19,7 +19,7 @@ const SearchContainer: React.FunctionComponent<
       term
     }
   });
-  console.log(loading, data, term);
+  // console.log(loading, data, term);
   return <SearchPresenter loading={loading} data={data} searchTerm={term} />;
 };
 

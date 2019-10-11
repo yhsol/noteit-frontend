@@ -24,7 +24,7 @@ const EditPostContainer: React.FunctionComponent<
 
   const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
   const post = data.seeFullPost;
-  console.log(post);
+  // console.log(post);
   const editPostMutation = useMutation(EDIT_POST);
   // 데이터들 전달하는게 문제가 아니었다.
   // useMutation 에서 데이터를 읽는 시점이 렌더 되는 시점보다 빨라서 이 때 데이터가 없기 때문에 에러가 나는 것.
@@ -43,7 +43,7 @@ const EditPostContainer: React.FunctionComponent<
             action: EDIT
           }
         });
-        console.log(editPost);
+        // console.log(editPost);
         toast.success("upload complete!");
         props.history.push(`/feed`);
       } catch (error) {

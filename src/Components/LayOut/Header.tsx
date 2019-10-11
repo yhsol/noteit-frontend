@@ -54,6 +54,12 @@ const HeaderItem = styled(Link)`
   margin: 0 5px;
 `;
 
+const SideMenuButton = styled.button`
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+`;
+
 const SideMenu = styled.div`
   display: flex;
   flex-direction: column;
@@ -122,13 +128,13 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
               <NotificationIcon />
             </HeaderItem>
             {!data.me ? (
-              <HeaderItem to="#">
+              <SideMenuButton>
                 <UserIcon />
-              </HeaderItem>
+              </SideMenuButton>
             ) : (
-              <HeaderItem to="/profile" onClick={toggleMenu}>
+              <SideMenuButton onClick={toggleMenu}>
                 <UserIcon />
-              </HeaderItem>
+              </SideMenuButton>
             )}
           </HeaderItems>
           {/* side menu bar 에서 다양한 기능을 보여줘야됨. 

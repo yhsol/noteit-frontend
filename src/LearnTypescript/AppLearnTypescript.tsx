@@ -9,7 +9,7 @@ const AppLearnTypescript: React.FC = () => {
   const [value, setValue] = useState<string>("");
 
   const onChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    console.log(event.target);
+    // console.log(event.target);
   };
   const onFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();

@@ -10,6 +10,7 @@
 
 # production
 /build
+/LearnTypescript
 
 # misc
 .DS_Store

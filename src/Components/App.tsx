@@ -61,7 +61,7 @@ const App: React.FunctionComponent<IAppProps> = () => {
                 <SmallWrapper>
                   <RouterComponent isLoggedIn={isLoggedIn} />
                 </SmallWrapper>
-                <FooterSmall />
+                {isLoggedIn ? <FooterSmall /> : <Footer />}
               </>
             )}
             <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />

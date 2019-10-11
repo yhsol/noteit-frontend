@@ -53,7 +53,7 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
           const {
             data: { requestSecret }
           } = await requestSecretMutation();
-          console.log(requestSecret);
+          // console.log(requestSecret);
           if (!requestSecret) {
             toast.error("You don't have an account yet, create one!");
             setTimeout(() => setAction("signUp"), 2000);
@@ -78,7 +78,7 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
           const {
             data: { createAccount }
           } = await createAccountMutation();
-          console.log(createAccount);
+          // console.log(createAccount);
           if (!createAccount) {
             toast.error("Can't create an account, try again!");
           } else {

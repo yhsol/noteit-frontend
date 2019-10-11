@@ -9,7 +9,7 @@ export const Client = new ApolloClient({
   uri:
     process.env.NODE_ENV === "development"
       ? "http://localhost:4010"
-      : "https://noteitblog-server-2bf8f48232.herokuapp.com/noteit/prod",
+      : "https://noteitblog.herokuapp.com/",
   clientState: {
     defaults,
     resolvers

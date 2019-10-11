@@ -6,7 +6,10 @@ import { defaults, resolvers } from "./LocalState";
 // });
 
 export const Client = new ApolloClient({
-  uri: "http://localhost:4010",
+  uri:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:4010"
+      : "https://noteitblog.herokuapp.com/",
   clientState: {
     defaults,
     resolvers

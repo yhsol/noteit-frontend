@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { UserIcon, MenuIcon } from "../../Utils/Icons";
+import { MenuIcon } from "../../Utils/Icons";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../../SharedQuery";
 

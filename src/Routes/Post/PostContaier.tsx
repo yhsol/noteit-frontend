@@ -1,7 +1,6 @@
 import * as React from "react";
-import { useQuery, useMutation } from "react-apollo-hooks";
-import { POST_QUERY, TOGGLE_LIKE, ADD_COMMENT } from "./PostQuery";
-import Loader from "../../Components/Loader";
+import { useMutation } from "react-apollo-hooks";
+import { TOGGLE_LIKE, ADD_COMMENT } from "./PostQuery";
 import PostPresenter from "./PostPresenter";
 import useInput from "../../Utils/Hooks/useInput";
 import { toast } from "react-toastify";

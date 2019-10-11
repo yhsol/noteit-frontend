@@ -15,7 +15,7 @@ const Post: React.FunctionComponent<IPostProps> = ({
 }) => {
   const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
   const post = data.seeFullPost;
-  console.log(history);
+  // console.log(history);
   return (
     <>
       {loading && <Loader />}

@@ -13,8 +13,6 @@ const UploadPostContainer: React.FunctionComponent<
 > = props => {
   const title = useUploadInput("");
   const text = useUploadInput("");
-  const files = useUploadInput("");
-  const tags = useUploadInput("");
 
   const uploadPostMutation = useMutation(UPLOAD_POST, {
     variables: {

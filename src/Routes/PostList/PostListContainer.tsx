@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import PostListPresenter from "./PostListPresenter";
-import useInput from "../../Utils/Hooks/useInput";
 import PostListForm from "../../Components/LayOut/PostListForm";
 
 interface IUserProps {

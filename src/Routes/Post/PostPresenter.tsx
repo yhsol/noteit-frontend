@@ -148,8 +148,7 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   const date = createdAt.toString().substring(0, 10);
   // console.log(user.avatar);
   const image = "https://image.flaticon.com/icons/svg/258/258428.svg";
-  const [avatar, setAvatar] = React.useState(user.avatar || image);
-  // mutation
+  const [avatar] = React.useState(user.avatar || image);
   const editPostMutation = useMutation(EDIT_POST);
 
   const [Action, setAction] = React.useState("EDIT");

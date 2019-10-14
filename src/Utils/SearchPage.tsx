@@ -1,7 +1,7 @@
 import React from "react";
 import useInput from "./Hooks/useInput";
 import { withRouter, RouteComponentProps } from "react-router";
-import Input from "./Input";
+// import Input from "./Input";
 import styled from "styled-components";
 import { SearchIcon } from "./Icons";
 
@@ -36,10 +36,10 @@ type ISearchProps = RouteComponentProps;
 
 const SearchPage: React.FunctionComponent<ISearchProps> = props => {
   const search = useInput("");
-  const onSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    props.history.push(`/search?term=${search.value}`);
-  };
+  // const onSearchSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   props.history.push(`/search?term=${search.value}`);
+  // };
   return (
     <div>
       <Form>

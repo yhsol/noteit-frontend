@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useQuery, useMutation } from "react-apollo-hooks";
+import { useQuery } from "react-apollo-hooks";
 import { POST_QUERY } from "./Post/PostQuery";
 import { RouteComponentProps, withRouter } from "react-router";
 import PostContaier from "./Post/PostContaier";

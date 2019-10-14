@@ -20,7 +20,7 @@ const EditPostContainer: React.FunctionComponent<
 
   const EDIT = "EDIT";
   // const DELETE = "DELETE";
-  const [action, setAction] = React.useState(EDIT);
+  const [action] = React.useState(EDIT);
 
   const { data, loading } = useQuery(POST_QUERY, { variables: { id } });
   const post = data.seeFullPost;

@@ -158,7 +158,7 @@ const Profile: React.FunctionComponent<IPostProps> = ({
   const profile = data.seeUser;
 
   const image = "https://image.flaticon.com/icons/svg/258/258428.svg";
-  const [avatar, setAvatar] = React.useState(data.avatar || image);
+  const [avatar] = React.useState(data.avatar || image);
   // console.log(profile);
   return (
     <>

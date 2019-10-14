@@ -44,9 +44,9 @@ const PostListContainer: React.FunctionComponent<IPostListContaienr> = ({
   createdAt,
   updatedAt
 }) => {
-  const [isLikedState, setIsLiked] = useState<boolean>(isLiked);
-  const [likeCountState, setLikeCount] = useState<number>(likeCount);
-  const [commentCountState, setCommentCount] = useState<number>(commentCount);
+  const [isLikedState] = useState<boolean>(isLiked);
+  const [likeCountState] = useState<number>(likeCount);
+  const [commentCountState] = useState<number>(commentCount);
   return (
     <PostListForm
       id={id}

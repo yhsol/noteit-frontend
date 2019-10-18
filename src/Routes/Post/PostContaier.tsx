@@ -4,6 +4,7 @@ import { TOGGLE_LIKE, ADD_COMMENT } from "./PostQuery";
 import PostPresenter from "./PostPresenter";
 import useInput from "../../Utils/Hooks/useInput";
 import { toast } from "react-toastify";
+import { History } from "history";
 
 interface IUserProps {
   id: string;
@@ -33,7 +34,7 @@ interface IPostContaienr {
   likeCount: number;
   commentCount: number;
   createdAt: number;
-  history: any;
+  history: History<any>;
 }
 
 const PostContainer: React.FunctionComponent<IPostContaienr> = ({

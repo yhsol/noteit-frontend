@@ -59,7 +59,7 @@ const SignUp = styled.span`
 
 interface IAuthPresenterProps {
   action: string;
-  setAction: any;
+  setAction: React.Dispatch<React.SetStateAction<string>>;
   username: InputProps;
   email: InputProps;
   firstName: InputProps;
@@ -84,7 +84,7 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
   secret,
   setAction
 }) => {
-  const onSignUp = (e: any) => {
+  const onSignUp = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     setAction("signUp");
   };
   return (

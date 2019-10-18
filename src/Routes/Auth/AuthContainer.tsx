@@ -112,6 +112,7 @@ const AuthContainer: React.FunctionComponent<IAuthProps> = () => {
   return (
     <AuthPresenter
       action={action}
+      setAction={setAction}
       username={username}
       email={email}
       firstName={firstName}

@@ -16,16 +16,35 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  width: 90vw;
-  padding: 20px 10px;
+  justify-content: center;
+  /* width: 17rem; */
+  /* width: 90vw; */
+  /* padding: 20px 10px; */
+  padding: 1rem;
   background-color: rgba(0, 0, 0, 0.001);
   text-align: center;
+  margin-bottom: 0.5rem;
+  width: 32rem;
+  height: 35vh;
+  form {
+    width: 100%;
+    display: grid;
+    gap: 0.3rem;
+    justify-items: center;
+    button {
+      color: white;
+      width: 80%;
+    }
+  }
 `;
 
 const Title = styled.h1`
   font-size: 30px;
   margin-bottom: 2rem;
+`;
+
+const SignUp = styled.span`
+  color: ${props => props.theme.uiColorOrange};
 `;
 
 // const Box = styled.div`
@@ -40,6 +59,7 @@ const Title = styled.h1`
 
 interface IAuthPresenterProps {
   action: string;
+  setAction: any;
   username: InputProps;
   email: InputProps;
   firstName: InputProps;
@@ -61,8 +81,12 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
   firstName,
   lastName,
   onSubmit,
-  secret
+  secret,
+  setAction
 }) => {
+  const onSignUp = (e: any) => {
+    setAction("signUp");
+  };
   return (
     <Wrapper>
       <Form>
@@ -72,6 +96,9 @@ const AuthPresenter: React.FunctionComponent<IAuthPresenterProps> = ({
             <form onSubmit={onSubmit}>
               <Input placeholder={"email"} type="email" {...email} />
               <Button text={"Log In"} />
+              <div>
+                <SignUp onClick={onSignUp}>sign up</SignUp> here!
+              </div>
             </form>
           </>
         )}

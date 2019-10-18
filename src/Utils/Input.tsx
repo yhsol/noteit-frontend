@@ -9,8 +9,8 @@ const Form = styled.div`
   padding: 0px 0.5rem;
   font-size: 12px;
   ${props => props.theme.whiteBox};
-  width: 17rem;
-  margin: 0 auto;
+  width: 80%;
+  /* margin: 0 auto; */
   height: 1.7rem;
   display: flex;
   align-items: center;

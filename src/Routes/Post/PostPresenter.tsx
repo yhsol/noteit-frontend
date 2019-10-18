@@ -93,6 +93,7 @@ const File = styled.img`
   background-position: center;
   width: 100%;
   height: 100%;
+  margin-bottom: 1rem;
 `;
 
 const Tag = styled.span`

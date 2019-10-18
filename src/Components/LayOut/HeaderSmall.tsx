@@ -93,18 +93,18 @@ const HeaderSmall: React.FunctionComponent<IHeaderProps> = props => {
           {!data.me ? (
             <Link to="/profile">profile</Link>
           ) : (
-            <Link to={data.me.username}>profile</Link>
+            <Link to={`/profile/${data.me.username}`}>profile</Link>
           )}
-          <Link to="profile" onClick={toggleMenu}>
+          <Link to="/profile" onClick={toggleMenu}>
             post
           </Link>
-          <Link to="profile" onClick={toggleMenu}>
+          <Link to="/profile" onClick={toggleMenu}>
             bookmark
           </Link>
-          <Link to="profile" onClick={toggleMenu}>
+          <Link to="/profile" onClick={toggleMenu}>
             settings
           </Link>
-          <Link to="profile" onClick={toggleMenu}>
+          <Link to="/profile" onClick={toggleMenu}>
             sign out
           </Link>
         </SideMenu>

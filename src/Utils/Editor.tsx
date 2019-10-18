@@ -69,7 +69,6 @@ interface IEditorProps {
   text: InputProps;
   editTitle?: string;
   editText?: string;
-  settitletitle?: any;
   onSubmit(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

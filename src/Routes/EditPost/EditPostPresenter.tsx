@@ -81,7 +81,7 @@ interface IEditorProps {
   id?: string;
   title: string;
   text: string;
-  onSubmit: any;
+  onSubmit: (title: any, text: any) => Promise<void>;
 }
 
 const EditPostPresenter: React.FunctionComponent<IEditorProps> = ({

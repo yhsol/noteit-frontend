@@ -7,6 +7,7 @@ import { EDIT_POST } from "../EditPost/EditPostQuery";
 import { useMutation } from "react-apollo-hooks";
 import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
+import { History } from "history";
 
 interface IUserProps {
   id: string;
@@ -36,8 +37,8 @@ interface IPostPresenter {
   likeCount: number;
   commentCount: number;
   createdAt: number;
-  history: any;
-  toggleLike: any;
+  history: History<any>;
+  toggleLike: () => Promise<void>;
   isLikedState: boolean;
   likeCountState: number;
 }

@@ -28,7 +28,7 @@ const Section = styled.div`
 `;
 
 interface ISearchPresenterProps {
-  loading: any;
+  loading: boolean;
   data: any;
   searchTerm: string;
 }

@@ -165,7 +165,7 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
             </InfoData>
           </InfoSection>
         </TextSection>
-        <Link to={id && `post/${id}`}>
+        <Link to={id && `/post/${id}`}>
           <FileSection>
             {files &&
               files.map((file, index) => (

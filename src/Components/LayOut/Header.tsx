@@ -127,7 +127,8 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
             <HeaderItem to="/notification">
               <NotificationIcon />
             </HeaderItem>
-            {!data.me ? (
+            <HeaderItem to={`/profile/${data.me.usename}`}>profile</HeaderItem>
+            {/* {!data.me ? (
               <SideMenuButton>
                 <UserIcon />
               </SideMenuButton>
@@ -135,7 +136,7 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
               <SideMenuButton onClick={toggleMenu}>
                 <UserIcon />
               </SideMenuButton>
-            )}
+            )} */}
           </HeaderItems>
           {/* side menu bar 에서 다양한 기능을 보여줘야됨. 
         다른 page 하나를 새로 만들어서 토글 될 때 해당 라우터들을 연결한 page 가 나오게 하는 방식으로 해볼 수 있을 듯. */}

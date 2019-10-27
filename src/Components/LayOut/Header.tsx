@@ -127,7 +127,7 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
             <HeaderItem to="/notification">
               <NotificationIcon />
             </HeaderItem>
-            <HeaderItem to={`/profile/${data.me.usename}`}>
+            <HeaderItem to={`/profile/${data.me.username}`}>
               <UserIcon />
             </HeaderItem>
             {/* {!data.me ? (

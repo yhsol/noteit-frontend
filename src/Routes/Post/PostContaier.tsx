@@ -35,6 +35,7 @@ interface IPostContaienr {
   commentCount: number;
   createdAt: number;
   history: History<any>;
+  comments: string;
 }
 
 const PostContainer: React.FunctionComponent<IPostContaienr> = ({
@@ -48,14 +49,17 @@ const PostContainer: React.FunctionComponent<IPostContaienr> = ({
   likeCount,
   commentCount,
   createdAt,
-  history
+  history,
+  comments
 }) => {
   const [isLikedState, setIsLiked] = React.useState<boolean>(isLiked);
   const [likeCountState, setLikeCount] = React.useState<number>(likeCount);
   const [commentCountState, setCommentCount] = React.useState<number>(
     commentCount
   );
+  const [stateComment, setStateComment] = React.useState<any>([]);
   const comment = useInput("");
+  const [fakeComment, setFakeComment] = React.useState("");
   const toggleLikeMutation = useMutation(TOGGLE_LIKE, {
     variables: { postId: id }
   });
@@ -78,6 +82,27 @@ const PostContainer: React.FunctionComponent<IPostContaienr> = ({
       toast.error("Can't Like!");
     }
   };
+
+  const onKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { which } = e;
+    if (which === 13) {
+      e.preventDefault();
+      try {
+        const {
+          data: { addComment }
+        } = await addCommentMutation();
+        console.log(addComment);
+        setStateComment([...stateComment, addComment]);
+        setFakeComment(comment.value);
+        comment.setValue("");
+      } catch (error) {
+        toast.error("Can't add Comment!");
+        console.error(error);
+      }
+    }
+    return;
+  };
+
   return (
     <>
       <PostPresenter
@@ -95,6 +120,11 @@ const PostContainer: React.FunctionComponent<IPostContaienr> = ({
         toggleLike={toggleLike}
         isLikedState={isLikedState}
         likeCountState={likeCountState}
+        onKeyPress={onKeyPress}
+        comments={comments}
+        createComment={comment}
+        stateComment={stateComment}
+        fakeComment={fakeComment}
       />
     </>
   );

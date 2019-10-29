@@ -33,6 +33,7 @@ const Post: React.FunctionComponent<IPostProps> = ({
             commentCount={post.commentCount}
             createdAt={post.createdAt}
             history={history}
+            comments={post.comments}
           />
         </>
       ) : null}

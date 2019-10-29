@@ -8,6 +8,7 @@ import { useMutation } from "react-apollo-hooks";
 import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
 import { History } from "history";
+import TextAreaAutosize from "react-autosize-textarea";
 
 interface IUserProps {
   id: string;
@@ -26,6 +27,18 @@ interface IFilesProps {
   src: string;
 }
 
+interface InputProps {
+  value: string;
+  onChange(e?: React.ChangeEvent<HTMLInputElement>): void;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+interface CommentProps {
+  id: string;
+  text: string;
+  user: IUserProps;
+}
+
 interface IPostPresenter {
   id: string;
   user: IUserProps;
@@ -41,6 +54,11 @@ interface IPostPresenter {
   toggleLike: () => Promise<void>;
   isLikedState: boolean;
   likeCountState: number;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  createComment: InputProps;
+  comments: any;
+  stateComment: any;
+  fakeComment: any;
 }
 
 const Wrapper = styled.div`
@@ -73,6 +91,10 @@ const SAvatar = styled.div`
   margin-right: 1.2rem;
 `;
 
+const PostSection = styled.div`
+  min-height: 50vh;
+`;
+
 const Info = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,7 +105,9 @@ const InfoDataItem = styled.span`
   margin-left: 5px;
   color: rgba(0, 0, 0, 0.5);
 `;
+
 const FileWrapper = styled.div`
+  display: inline-block;
   width: 300px;
   height: 300px;
 `;
@@ -130,6 +154,22 @@ const PostButtons = styled.div`
   align-items: center;
 `;
 
+const CommentInput = styled.input`
+  width: 100%;
+  height: 2rem;
+  border: none;
+  padding: 10px;
+  margin-top: 2rem;
+  border: ${props => props.theme.boxBorder};
+  &:focus {
+    outline: none;
+  }
+  resize: none;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+`;
+
 const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   id,
   user,
@@ -144,7 +184,12 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   history,
   toggleLike,
   isLikedState,
-  likeCountState
+  likeCountState,
+  onKeyPress,
+  comments,
+  createComment,
+  stateComment,
+  fakeComment
 }) => {
   // console.log(history);
   const date = createdAt.toString().substring(0, 10);
@@ -152,7 +197,7 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
   const image = "https://image.flaticon.com/icons/svg/258/258428.svg";
   const [avatar] = React.useState(user.avatar || image);
   const editPostMutation = useMutation(EDIT_POST);
-
+  console.log(comments);
   const [Action, setAction] = React.useState("EDIT");
   const onSubmit = async () => {
     if (id !== "" && Action !== "") {
@@ -200,14 +245,16 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
             <Button onClick={onSubmit}>delete</Button>
           </div>
         </TitleGrid>
-        <ReactMarkdown source={text} />
+        <PostSection>
+          <ReactMarkdown source={text} />
 
-        <FileWrapper>
           {files &&
             files.map(file => (
-              <File key={file.id} id={file.id} src={file.url} />
+              <FileWrapper>
+                <File key={file.id} id={file.id} src={file.url} />
+              </FileWrapper>
             ))}
-        </FileWrapper>
+        </PostSection>
         <div>
           {tags && tags.map(tag => <Tag key={tag.id}>#{tag.text}</Tag>)}
         </div>
@@ -225,6 +272,25 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
             <InfoDataItem>{commentCount}</InfoDataItem>
           </PostButton>
         </PostButtons>
+        {comments &&
+          comments.map((comment: CommentProps) => (
+            <div key={comment.id}>
+              <span>{comment.user.username}</span>
+              {comment.text}
+            </div>
+          ))}
+        <div>
+          <span>{fakeComment !== "" && user.username}</span>
+          {fakeComment}
+        </div>
+        <CommentInput
+          type="text"
+          name="comment"
+          placeholder="comment"
+          onKeyPress={onKeyPress}
+          value={createComment.value}
+          onChange={createComment.onChange}
+        />
       </Wrapper>
     </>
   );

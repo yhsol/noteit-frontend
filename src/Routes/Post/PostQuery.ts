@@ -51,8 +51,8 @@ export const TOGGLE_LIKE = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addCommnet($postId: String!, $text: String!) {
-    addCommnet(postId: $postId, text: $text) {
+  mutation addComment($postId: String!, $text: String!) {
+    addComment(postId: $postId, text: $text) {
       id
       text
       user {

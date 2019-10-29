@@ -19,6 +19,7 @@ interface IAppProps {}
 const SmallWrapper = styled.div`
   min-height: calc(100vh - 56px - 3rem);
   margin-top: 56px;
+  margin-bottom: 5rem;
   padding: 14px 23px;
 `;
 
@@ -27,6 +28,7 @@ const Wrapper = styled.div`
   width: 71%;
   margin: 0 auto;
   margin-top: 56px;
+  margin-bottom: 5rem;
   padding: 14px 23px;
 `;
 

@@ -92,7 +92,7 @@ const SAvatar = styled.div`
 `;
 
 const PostSection = styled.div`
-  min-height: 50vh;
+  min-height: 44vh;
 `;
 
 const Info = styled.div`

@@ -106,18 +106,18 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
           <Link to="/" style={{ fontSize: "26px", color: "#f7a400" }}>
             noteit
           </Link>
-          <SearchForm onSubmit={onSearchSubmit}>
+          {/* <SearchForm onSubmit={onSearchSubmit}>
             <Input
               value={search.value}
               onChange={search.onChange}
               placeholder="search.."
               icon={true}
             />
-          </SearchForm>
+          </SearchForm> */}
           <HeaderItems>
-            <SearchIconForm to="/search">
+            <HeaderItem to="/searchpage">
               <SearchIcon />
-            </SearchIconForm>
+            </HeaderItem>
             <HeaderItem to="/uploadpost">
               <PenIcon />
             </HeaderItem>

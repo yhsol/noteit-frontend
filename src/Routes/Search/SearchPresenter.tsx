@@ -3,6 +3,9 @@ import styled from "styled-components";
 import media from "styled-media-query";
 import Loader from "../../Components/Loader";
 import BoldText from "../../Styles/BoldText";
+import SearchPage from "../../Utils/SearchPage";
+import UserCard from "../../Utils/UserCard";
+import PostCard from "../../Utils/PostCard";
 
 const Wrapper = styled.div`
   height: 20rem;
@@ -29,7 +32,7 @@ const Section = styled.div`
 
 interface ISearchPresenterProps {
   loading: boolean;
-  data: any;
+  data: any | undefined;
   searchTerm: string;
 }
 
@@ -38,14 +41,13 @@ const SearchPresenter: React.FunctionComponent<ISearchPresenterProps> = ({
   data,
   searchTerm
 }) => {
-  const searchUser = data.searchUser;
-  const searchPost = data.searchPost;
-  const searchTag = data.searchTag;
-  // console.log(data.searchPost);
+  console.log(data);
+  // console.log(data.data.searchPost);
+
   if (searchTerm === undefined) {
     return (
       <Wrapper>
-        <BoldText text={"Search for something!"} />
+        <SearchPage />;
       </Wrapper>
     );
   } else if (loading === true) {
@@ -54,52 +56,53 @@ const SearchPresenter: React.FunctionComponent<ISearchPresenterProps> = ({
         <Loader />
       </Wrapper>
     );
-  } else if (data && searchUser && searchPost && searchTag) {
+  } else if (data && data.searchUser && data.searchPost && data.searchTag) {
     return (
       <Wrapper>
-        {searchUser.length === 0 &&
-        searchPost.length === 0 &&
-        searchTag.length === 0 ? (
+        {data.searchUser.length === 0 &&
+        data.searchPost.length === 0 &&
+        data.searchTag.length === 0 ? (
           <div>
             <BoldText text={`"${searchTerm}" was not found `} />
           </div>
         ) : (
           <>
             <div>
-              {searchUser.length !== 0 && (
-                <div>User Result({searchUser.length})</div>
+              {data.searchUser.length !== 0 && (
+                <div>User Result({data.searchUser.length})</div>
               )}
-              {searchUser.length === 0
+              {data.searchUser.length === 0
                 ? "no serach result for user!"
-                : searchUser.map((user: any) => (
-                    <div key={user.id}>
-                      {user.username}
-                      <div>
-                        {user.isFollowing ? "isFollowing!" : "isNotFollowing!"}
-                      </div>
-                    </div>
+                : data.searchUser.map((user: any) => (
+                    <UserCard
+                      key={user.id}
+                      username={user.username}
+                      url={user.avatar}
+                    />
                   ))}
             </div>
             <div>
-              {searchPost.length !== 0 && (
-                <div>Post Result({searchPost.length})</div>
+              {data.searchPost.length !== 0 && (
+                <div>Post Result({data.searchPost.length})</div>
               )}
-              {searchPost.length === 0
+              {data.searchPost.length === 0
                 ? "no search result for post!"
-                : searchPost.map((post: any) => (
-                    <div key={post.id}>
-                      <div>{post.title}</div>
-                      <div>{post.text.substring(0, 50)}</div>
-                    </div>
+                : data.searchPost.map((post: any) => (
+                    <PostCard
+                      key={post.id}
+                      title={post.title}
+                      text={post.text}
+                      id={post.id}
+                    />
                   ))}
             </div>
             <div>
-              {searchTag.length !== 0 && (
-                <div>Tag Reulst({searchTag.length})</div>
+              {data.searchTag.length !== 0 && (
+                <div>Tag Reulst({data.searchTag.length})</div>
               )}
-              {searchTag.length === 0
+              {data.searchTag.length === 0
                 ? "no serach result for tag!"
-                : searchTag.map((tag: any) => (
+                : data.searchTag.map((tag: any) => (
                     <div>
                       <div>#{tag.text}</div>
                     </div>

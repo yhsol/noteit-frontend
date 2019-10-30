@@ -5,7 +5,7 @@ import { withRouter, RouteComponentProps } from "react-router";
 import styled from "styled-components";
 import { SearchIcon } from "./Icons";
 
-const Form = styled.div`
+const Form = styled.form`
   background-color: ${props => props.theme.backgroundColor};
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   padding: 0px 0.5rem;
@@ -21,6 +21,7 @@ const SInput = styled.input`
   border: none;
   font-size: 20px;
   background-color: inherit;
+  height: 100%;
   width: 100%;
 `;
 
@@ -36,26 +37,25 @@ type ISearchProps = RouteComponentProps;
 
 const SearchPage: React.FunctionComponent<ISearchProps> = props => {
   const search = useInput("");
-  // const onSearchSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   props.history.push(`/search?term=${search.value}`);
-  // };
+  const onSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    props.history.push(`/search?term=${search.value}`);
+    window.location.reload();
+  };
   return (
-    <div>
-      <Form>
-        <SInput
-          value={search.value}
-          onChange={search.onChange}
-          placeholder={"search"}
-          required={true}
-          type={"text"}
-          className={"className"}
-        />
-        <SButton>
-          <SearchIcon size={17} />
-        </SButton>
-      </Form>
-    </div>
+    <Form onSubmit={onSearchSubmit}>
+      <SInput
+        value={search.value}
+        onChange={search.onChange}
+        placeholder={"search"}
+        required={true}
+        type={"text"}
+        className={"className"}
+      />
+      <SButton>
+        <SearchIcon size={17} />
+      </SButton>
+    </Form>
   );
 };
 

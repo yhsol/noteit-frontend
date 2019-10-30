@@ -48,7 +48,7 @@ const FooterSmall: React.FunctionComponent<IFooterProps> = () => {
         <HeaderItem to="/">
           <HomeIcon />
         </HeaderItem>
-        <HeaderItem to="/searchpage">
+        <HeaderItem to="/search">
           <SearchIcon />
         </HeaderItem>
         <HeaderItem to="/uploadpost">

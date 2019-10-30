@@ -20,12 +20,11 @@ const Form = styled.div`
   /* width: 17rem; */
   /* width: 90vw; */
   /* padding: 20px 10px; */
-  padding: 1rem;
+  padding: 2rem;
   background-color: rgba(0, 0, 0, 0.001);
   text-align: center;
   margin-bottom: 0.5rem;
   width: 32rem;
-  height: 35vh;
   form {
     width: 100%;
     display: grid;

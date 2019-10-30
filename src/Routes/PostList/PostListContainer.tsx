@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PostListForm from "../../Components/LayOut/PostListForm";
+import PostListForm from "../../Components/UI/PostListForm";
 
 interface IUserProps {
   id: string;

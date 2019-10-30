@@ -2,7 +2,7 @@ import React from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
 import Loader from "../Components/Loader";
-import PostListForm from "../Components/LayOut/PostListForm";
+import PostListForm from "../Components/UI/PostListForm";
 
 const EXPLORE_QUERY = gql`
   {

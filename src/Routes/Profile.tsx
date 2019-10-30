@@ -2,7 +2,7 @@ import * as React from "react";
 import { useQuery, useMutation } from "react-apollo-hooks";
 import { RouteComponentProps, withRouter } from "react-router";
 import Loader from "../Components/Loader";
-import PostListForm from "../Components/LayOut/PostListForm";
+import PostListForm from "../Components/UI/PostListForm";
 import { gql } from "apollo-boost";
 import styled from "styled-components";
 import BoldText from "../Styles/BoldText";

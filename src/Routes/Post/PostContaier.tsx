@@ -5,23 +5,7 @@ import PostPresenter from "./PostPresenter";
 import useInput from "../../Utils/Hooks/useInput";
 import { toast } from "react-toastify";
 import { History } from "history";
-
-interface IUserProps {
-  id: string;
-  username: string;
-  avatar: string;
-}
-
-interface ITagsProps {
-  id: string;
-  text: string;
-}
-
-interface IFilesProps {
-  id: string;
-  url: string;
-  src: string;
-}
+import { IUserProps, ITagsProps, IFilesProps } from "../../SharedTypes";
 
 interface IPostContaienr {
   id: string;

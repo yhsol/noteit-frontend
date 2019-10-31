@@ -17,9 +17,6 @@ const Form = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* width: 17rem; */
-  /* width: 90vw; */
-  /* padding: 20px 10px; */
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.001);
   text-align: center;
@@ -45,16 +42,6 @@ const Title = styled.h1`
 const SignUp = styled.span`
   color: ${props => props.theme.uiColorOrange};
 `;
-
-// const Box = styled.div`
-//   ${props => props.theme.whiteBox}
-//   background-color: rgba(0,0,0,0.00009);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 17rem;
-//   padding: 0.5rem;
-// `;
 
 interface IAuthPresenterProps {
   action: string;

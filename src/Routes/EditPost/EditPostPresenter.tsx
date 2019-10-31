@@ -71,12 +71,6 @@ const Button = styled.button`
   border-radius: ${props => props.theme.borderRadius};
 `;
 
-interface InputProps {
-  value: string;
-  onChange(e?: React.ChangeEvent<HTMLTextAreaElement>): void;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-}
-
 interface IEditorProps {
   id?: string;
   title: string;

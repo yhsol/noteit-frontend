@@ -1,21 +1,6 @@
 import React, { useState } from "react";
 import PostListForm from "../../Components/UI/PostListForm";
-
-interface IUserProps {
-  id: string;
-  username: string;
-  avatar: string;
-}
-
-interface ITagsProps {
-  id: string;
-  text: string;
-}
-
-interface IFilesProps {
-  id: string;
-  url: string;
-}
+import { IFilesProps, IUserProps, ITagsProps } from "../../SharedTypes";
 
 interface IPostListContaienr {
   id: string;

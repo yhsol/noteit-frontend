@@ -107,6 +107,11 @@ const InfoDataItem = styled.span`
 `;
 
 const FileWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const FileItem = styled.div`
   display: inline-block;
   width: 300px;
   height: 300px;
@@ -247,13 +252,14 @@ const PostPresenter: React.FunctionComponent<IPostPresenter> = ({
         </TitleGrid>
         <PostSection>
           <ReactMarkdown source={text} />
-
-          {files &&
-            files.map(file => (
-              <FileWrapper>
-                <File key={file.id} id={file.id} src={file.url} />
-              </FileWrapper>
-            ))}
+          <FileWrapper>
+            {files &&
+              files.map(file => (
+                <FileItem>
+                  <File key={file.id} id={file.id} src={file.url} />
+                </FileItem>
+              ))}
+          </FileWrapper>
         </PostSection>
         <div>
           {tags && tags.map(tag => <Tag key={tag.id}>#{tag.text}</Tag>)}

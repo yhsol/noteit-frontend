@@ -133,7 +133,6 @@ const PostListForm: React.FunctionComponent<IPostListPresenter> = ({
         <TextSection>
           <Link to={id && `post/${id}`}>
             <Title>{title}</Title>
-            <SubTitle>{text}</SubTitle>
           </Link>
           <Link to={username && `profile/${username}`}>
             <Author>{username}</Author>

@@ -142,6 +142,7 @@ const PostListPresenter: React.FunctionComponent<IPostListPresenter> = ({
         <TextSection>
           <Link to={id && `post/${id}`}>
             <Title>{title}</Title>
+            <div>it's not work?</div>
           </Link>
           <Link to={username && `profile/${username}`}>
             <Author>{username}</Author>

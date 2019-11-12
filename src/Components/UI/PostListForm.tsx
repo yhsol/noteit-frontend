@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 const Section = styled.div`
   display: grid;
-  margin-bottom: 2rem;
 `;
 
 const Wrapper = styled.div`

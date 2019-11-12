@@ -82,7 +82,7 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
 }) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
 
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, setToggle] = React.useState(true);
   const onClickToggle = () => {
     setToggle(!toggle);
   };

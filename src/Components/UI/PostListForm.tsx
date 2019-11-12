@@ -154,16 +154,14 @@ const PostListForm: React.FunctionComponent<IPostListPresenter> = ({
             </InfoData>
           </InfoSection>
         </TextSection>
-        {files && (
-          <Link to={id && `post/${id}`}>
-            <FileSection>
-              {files &&
-                files.map((file, index) => (
-                  <File key={file.id} src={file.url} hidden={index !== 0} />
-                ))}
-            </FileSection>
-          </Link>
-        )}
+        <Link to={id && `post/${id}`}>
+          <FileSection>
+            {files &&
+              files.map((file, index) => (
+                <File key={file.id} src={file.url} hidden={index !== 0} />
+              ))}
+          </FileSection>
+        </Link>
       </Wrapper>
     </Section>
   );

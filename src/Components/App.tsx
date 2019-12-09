@@ -13,8 +13,23 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FooterSmall from "./UI/FooterSmall";
 import HeaderSmall from "./UI/HeaderSmall";
+import media from "styled-media-query";
 
 interface IAppProps {}
+
+interface StyleProps {
+  section: boolean;
+}
+
+const AppWrapper = styled.div``;
+
+const BigSection = styled.div<StyleProps>`
+  ${media.lessThan("medium")`display: none;`}
+`;
+
+const SmallSection = styled.div<StyleProps>`
+  ${media.greaterThan("medium")`display: none;`}
+`;
 
 const SmallWrapper = styled.div`
   min-height: calc(100vh - 56px - 3rem);
@@ -25,9 +40,11 @@ const SmallWrapper = styled.div`
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px - 3rem);
-  width: 71%;
+  width: 50%;
   margin: 0 auto;
-  margin-top: 56px;
+  ${media.lessThan("large")`width: 60%;`}
+
+  /* margin-top: 8rem; */
   margin-bottom: 5rem;
   padding: 14px 23px;
 `;
@@ -42,30 +59,30 @@ const App: React.FunctionComponent<IAppProps> = () => {
   const { data } = useQuery(LogInQuery);
   const { isLoggedIn }: { isLoggedIn: boolean } = data;
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
-
+  console.log(smallMedia);
   return (
     <ThemeProvider theme={Theme}>
       <>
         <GlobalStyles />
         <Router>
           <>
-            {smallMedia ? (
-              <>
+            <AppWrapper>
+              <BigSection section={smallMedia}>
                 {isLoggedIn && <Header />}
                 <Wrapper>
                   <RouterComponent isLoggedIn={isLoggedIn} />
                 </Wrapper>
                 <Footer />
-              </>
-            ) : (
-              <>
+              </BigSection>
+              <SmallSection section={smallMedia}>
                 {isLoggedIn && <HeaderSmall />}
                 <SmallWrapper>
                   <RouterComponent isLoggedIn={isLoggedIn} />
                 </SmallWrapper>
                 {isLoggedIn ? <FooterSmall /> : <Footer />}
-              </>
-            )}
+              </SmallSection>
+            </AppWrapper>
+
             <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
           </>
         </Router>

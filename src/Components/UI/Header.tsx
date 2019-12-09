@@ -18,22 +18,30 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
-  height: 56px;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.0975); */
+  /* height: 56px; */
   z-index: 1;
   background-color: ${props => props.theme.backgroundColor};
   transition: height 0.2s ease-in-out;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   width: 100%;
   padding: 0 20px;
+  /* margin-top: 2rem; */
 `;
 
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 71%;
+  align-items: baseline;
+  width: 55%;
+  ${media.lessThan("large")`width: 65%;`}
+`;
+
+const Title = styled(Link)`
+  font-size: 6.5rem;
+  color: #f7a400;
+  font-weight: bold;
 `;
 
 const SearchForm = styled.form`
@@ -103,9 +111,7 @@ const Header: React.FunctionComponent<IHeaderProps> = props => {
     <>
       <Wrapper>
         <HeaderWrapper>
-          <Link to="/" style={{ fontSize: "26px", color: "#f7a400" }}>
-            noteit
-          </Link>
+          <Title to="/">noteit</Title>
           {/* <SearchForm onSubmit={onSearchSubmit}>
             <Input
               value={search.value}

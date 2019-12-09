@@ -28,6 +28,7 @@ const TextWrapper = styled.div`
   grid-template-columns: 1fr;
  `};
   row-gap: 20px;
+  margin-top: 2rem;
 `;
 
 const TitleForm = styled.form`
@@ -65,6 +66,8 @@ const TitleForm = styled.form`
 const TitleInput = styled(UploadInput)`
   font-size: 23px;
   border: none;
+  font-weight: bold;
+  font-size: 2rem;
 `;
 
 const TextInput = styled(UploadInput)`

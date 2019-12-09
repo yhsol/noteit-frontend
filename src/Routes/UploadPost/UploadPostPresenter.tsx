@@ -21,7 +21,7 @@ const TitleWrapper = styled.div`
 
 const TextWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 1fr); */
   width: 100%;
   ${media.lessThan("medium")`grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
@@ -66,11 +66,16 @@ interface IUPloadPostPresenterProps {
   onSubmit(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-const UploadPostPresenter: React.FunctionComponent<
-  IUPloadPostPresenterProps
-> = ({ title, text, onSubmit }) => {
+const UploadPostPresenter: React.FunctionComponent<IUPloadPostPresenterProps> = ({
+  title,
+  text,
+  onSubmit
+}) => {
   const smallMedia = window.matchMedia("(min-width: 500px)").matches;
-
+  const [toggle, setToggle] = React.useState(false);
+  const onClickToggle = () => {
+    setToggle(!toggle);
+  };
   return (
     <>
       <Wrapper>
@@ -80,21 +85,28 @@ const UploadPostPresenter: React.FunctionComponent<
           </TitleForm>
           {/* 저장은 되는데 저장하고나서 다시 feed page 로 이동해야 됨. */}
           <Button onClick={onSubmit}>save</Button>
+          <Button onClick={onClickToggle}>markdown</Button>
         </TitleWrapper>
         <TextWrapper>
           {!smallMedia ? (
             <>
-              <div>
-                <ReactMarkdown source={text.value} />
-              </div>
+              {toggle === true && (
+                <div>
+                  <ReactMarkdown source={text.value} />
+                </div>
+              )}
+
               <TextInput placeholder={"content"} {...text} name={text.value} />
             </>
           ) : (
             <>
+              {toggle === true && (
+                <div>
+                  <ReactMarkdown source={text.value} />
+                </div>
+              )}
+
               <TextInput placeholder={"content"} {...text} name={text.value} />
-              <div>
-                <ReactMarkdown source={text.value} />
-              </div>
             </>
           )}
         </TextWrapper>

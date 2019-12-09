@@ -21,7 +21,7 @@ const TitleWrapper = styled.div`
 
 const TextWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 1fr); */
   width: 100%;
   ${media.lessThan("medium")`grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
@@ -42,6 +42,11 @@ const TitleInput = styled(UploadInput)`
 
 const TextInput = styled(UploadInput)`
   font-size: 20px;
+`;
+
+const MarkDown = styled(ReactMarkdown)`
+  width: 100%;
+  word-break: break-all;
 `;
 
 const Buttons = styled.div``;
@@ -118,19 +123,19 @@ const Editor: React.FunctionComponent<IEditorProps> = ({
             <>
               {toggle === true && (
                 <div>
-                  <ReactMarkdown source={text.value} />
+                  <MarkDown source={text.value} />
                 </div>
               )}
               <TextInput placeholder={"content"} {...text} name={text.value} />
             </>
           ) : (
             <>
-              <TextInput placeholder={"content"} {...text} name={text.value} />
               {toggle === true && (
                 <div>
-                  <ReactMarkdown source={text.value} />
+                  <MarkDown source={text.value} />
                 </div>
               )}
+              <TextInput placeholder={"content"} {...text} name={text.value} />
             </>
           )}
         </TextWrapper>

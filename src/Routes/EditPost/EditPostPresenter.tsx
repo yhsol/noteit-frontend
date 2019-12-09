@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import media from "styled-media-query";
 import TextareaAutosize from "react-autosize-textarea";
+import UploadInput from "../../Utils/UploadInput";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const TitleWrapper = styled.div`
 
 const TextWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 1fr); */
   width: 100%;
   ${media.lessThan("medium")`grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
@@ -35,30 +36,39 @@ const TitleForm = styled.form`
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
 `;
 
-const TitleInput = styled(TextareaAutosize)`
+// const TitleInput = styled(TextareaAutosize)`
+//   border: none;
+//   background-color: inherit;
+//   width: 100%;
+//   &:focus {
+//     outline: none;
+//   }
+//   resize: none;
+//   font-size: 23px;
+//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+//     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+// `;
+
+// const TextInput = styled(TextareaAutosize)`
+//   border: none;
+//   background-color: inherit;
+//   width: 100%;
+//   &:focus {
+//     outline: none;
+//   }
+//   resize: none;
+//   font-size: 17px;
+//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+//     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+// `;
+
+const TitleInput = styled(UploadInput)`
+  font-size: 23px;
   border: none;
-  background-color: inherit;
-  width: 100%;
-  &:focus {
-    outline: none;
-  }
-  resize: none;
-  font-size: 26px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
-const TextInput = styled(TextareaAutosize)`
-  border: none;
-  background-color: inherit;
-  width: 100%;
-  &:focus {
-    outline: none;
-  }
-  resize: none;
-  font-size: 26px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+const TextInput = styled(UploadInput)`
+  font-size: 20px;
 `;
 
 const Button = styled.button`
@@ -69,6 +79,11 @@ const Button = styled.button`
   background-color: ${props => props.theme.greyColor};
   border: 0;
   border-radius: ${props => props.theme.borderRadius};
+`;
+
+const MarkDown = styled(ReactMarkdown)`
+  width: 100%;
+  word-break: break-all;
 `;
 
 interface IEditorProps {
@@ -131,7 +146,7 @@ const EditPostPresenter: React.FunctionComponent<IEditorProps> = ({
             <>
               {toggle === true && (
                 <div>
-                  <ReactMarkdown source={editText} />
+                  <MarkDown source={editText} />
                 </div>
               )}
               <TextInput
@@ -143,17 +158,17 @@ const EditPostPresenter: React.FunctionComponent<IEditorProps> = ({
             </>
           ) : (
             <>
+              {toggle === true && (
+                <div>
+                  <MarkDown source={editText} />
+                </div>
+              )}
               <TextInput
                 placeholder={"content"}
                 value={editText}
                 onChange={textonChange}
                 name={editText}
               />
-              {toggle === true && (
-                <div>
-                  <ReactMarkdown source={editText} />
-                </div>
-              )}
             </>
           )}
         </TextWrapper>

@@ -136,6 +136,7 @@ const Bio = styled.p`
 const StyledAvatar = styled(Avatar)`
   width: 150px;
   height: 150px;
+  ${media.lessThan("large")`width: 100px; height: 100px;`}
   ${media.lessThan("medium")`width: 50px; height: 50px;`}
 `;
 

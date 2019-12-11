@@ -2,7 +2,7 @@ import * as React from "react";
 import { ThemeProvider } from "styled-components";
 import Theme from "../Styles/Theme";
 import GlobalStyles from "../Styles/GlobalStyles";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import RouterComponent from "./RouterComponent";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
